@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_143310) do
+ActiveRecord::Schema.define(version: 2020_12_14_143452) do
+
+  create_table "bentos", force: :cascade do |t|
+    t.integer "sum_kcal"
+    t.integer "num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "boxes", force: :cascade do |t|
     t.string "box_name"

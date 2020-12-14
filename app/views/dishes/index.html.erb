@@ -1,0 +1,25 @@
+ <% @page_title = "おかず一覧" %>
+<h1><%= @page_title %></h1>
+
+<% if @dishes.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>おかず名</th>
+        <th>おすすめ</th>
+        <th>カロリー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dishes.each do |dish| %>
+        <tr>
+          <td style="text-align: right"><%= dish.dish_name %></td>
+          <td><%= dish.recommend %></td>
+          <td><%= dish.dish_kcal %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>おかず情報がありません</p>
+<% end %>

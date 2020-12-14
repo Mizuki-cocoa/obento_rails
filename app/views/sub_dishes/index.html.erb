@@ -1,0 +1,25 @@
+<% @page_title = "サイドメニュー一覧" %>
+<h1><%= @page_title %></h1>
+
+<% if @sub_dishes.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>サイドメニュー名</th>
+        <th>おすすめ</th>
+        <th>カロリー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sub_dishes.each do |sub| %>
+        <tr>
+          <td style="text-align: right"><%= sub.sub_dish_name %></td>
+          <td><%= sub.recommend %></td>
+          <td><%= sub.sub_kcal %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>サイド情報がありません</p>
+<% end %>
