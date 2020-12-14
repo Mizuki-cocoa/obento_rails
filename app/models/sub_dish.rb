@@ -1,0 +1,2 @@
+class SubDish < ApplicationRecord
+end

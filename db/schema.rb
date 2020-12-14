@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_071009) do
+ActiveRecord::Schema.define(version: 2020_12_14_141531) do
+
+  create_table "boxes", force: :cascade do |t|
+    t.string "box_name"
+    t.integer "box_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "full_name"
@@ -18,6 +25,27 @@ ActiveRecord::Schema.define(version: 2020_12_03_071009) do
     t.string "address"
     t.string "tel_num"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.string "dish_name"
+    t.boolean "recommend", default: false, null: false
+    t.string "introduction"
+    t.integer "dish_kcal"
+    t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_dishes", force: :cascade do |t|
+    t.string "sub_dish_name"
+    t.integer "sub_dish_price"
+    t.boolean "recommend", default: false, null: false
+    t.string "introduction"
+    t.integer "sub_kcal"
+    t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
