@@ -7,6 +7,8 @@ gnames = ["太郎", "次郎", "花子"]
     full_name: "#{fnames[idx % 4]} #{gnames[idx % 3]}",
     user_name: names[idx],
     address: "〇〇都〇〇区＊-△-☓",
-    tel_num: "080-0000-1111"
+    tel_num: "080-0000-1111",
+    password: "obento!",
+    password_confirmation: "obento!"
   )
 end

@@ -5,7 +5,6 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :user_name, null: false
       t.string :address
       t.string :tel_num
-      t.string :password_digest
 
       t.timestamps
     end
