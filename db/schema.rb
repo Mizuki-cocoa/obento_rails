@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_143452) do
+ActiveRecord::Schema.define(version: 2020_12_17_083643) do
 
   create_table "bentos", force: :cascade do |t|
     t.integer "sum_kcal"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_143452) do
   create_table "orders", force: :cascade do |t|
     t.date "reserve_date"
     t.date "deliver_date"
-    t.string "deliver_adress"
+    t.string "deliver_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 2020_12_14_143452) do
     t.string "introduction"
     t.integer "sub_kcal"
     t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subnums", force: :cascade do |t|
+    t.integer "sum_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

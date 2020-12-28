@@ -8,7 +8,7 @@ kcals = ["84", "134", "179", "77", "77", "138", "113",
 0.upto(15) do |idx|
   Dish.create(
     dish_name: dishes[idx],
-    recommend: (idx == 0),
+    recommend: (idx < 2),
     introduction: "ああああああ",
     dish_kcal: kcals[idx],
     stock: "10"

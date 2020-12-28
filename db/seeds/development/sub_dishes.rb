@@ -6,7 +6,7 @@ prices = ["100", "150", "200", "120", "120"]
   SubDish.create(
     sub_dish_name: sub_dishes[idx],
     sub_dish_price: prices[idx],
-    recommend: (idx == 0),
+    recommend: (idx < 2),
     introduction: "ああああああ",
     sub_kcal: kcals[idx],
     stock: "10"

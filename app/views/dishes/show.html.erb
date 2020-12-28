@@ -1,0 +1,18 @@
+<% @page_title = "おかず詳細" %>
+<h1><%= @page_title %></h1>
+
+<table class="attr">
+  <tr>
+    <th>おかず名</th>
+    <td><%= @dish.dish_name %></td>
+  </tr>
+  <tr>
+    <th>説明文</th>
+    <td><%= @dish.introduction %></td>
+  </tr>
+  <tr>
+    <th>カロリー</th>
+    <td><%= @dish.dish_kcal %></td>
+  </tr>
+  <td><%= link_to "おかず一覧に戻る", dishes_path %></td>
+</table>

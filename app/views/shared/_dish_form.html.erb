@@ -1,0 +1,22 @@
+<table class="attr">
+    <tr>
+      <th><%= form.label :dish_name, "おかず名" %></th>
+      <td><%= form.text_field :dish_name, size: 8 %></td>
+    </tr>
+    <tr>
+      <th>おすすめ</th>
+      <td><%= form.check_box :recommend %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :introduction, "説明文" %></th>
+      <td><%= form.text_field :introduction %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :dish_kcal, "カロリー" %></th>
+      <td><%= form.text_field :dish_kcal %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :stock, "在庫数" %></th>
+      <td><%= form.text_field :stock %></td>
+    </tr>
+</table>

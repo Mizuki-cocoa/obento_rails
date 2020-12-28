@@ -13,9 +13,14 @@
     <tbody>
       <% @sub_dishes.each do |sub| %>
         <tr>
-          <td style="text-align: right"><%= sub.sub_dish_name %></td>
+          <td style="text-align: right"><%= link_to sub.sub_dish_name, sub %></td>
           <td><%= sub.recommend %></td>
           <td><%= sub.sub_kcal %></td>
+          <td>
+            <%= link_to "編集", [:edit, sub] %>
+            <%= link_to "削除", sub, method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
+          </td>
         </tr>
       <% end %>
     </tbody>

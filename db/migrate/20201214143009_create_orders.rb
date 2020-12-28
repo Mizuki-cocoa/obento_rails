@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.date :reserve_date
       t.date :deliver_date
-      t.string :deliver_adress
+      t.string :deliver_address
       
       t.timestamps
     end

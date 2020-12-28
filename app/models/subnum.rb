@@ -1,0 +1,2 @@
+class Subnum < ApplicationRecord
+end
