@@ -18,6 +18,8 @@
           <td>
             <% if dish.dish_picture.attached? %>
               <%= image_tag dish.dish_picture.variant(resize: "50x50") %>
+            <% else %>
+              <%= image_tag("noimage.png", size: "50x50", alt: "noimage") %>
             <% end %>
           </td>
           <% if dish.recommend == true then %>
