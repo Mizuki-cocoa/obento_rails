@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   root "top#index"
   resources :dishes
   resources :sub_dishes
-  resources :customers
+  resources :customers do
+    resources :orders, only: [:index]
+  end
   resources :boxes
+  resources :orders
 
   get "bad_request" => "top#bad_request"
   get "forbidden" => "top#forbidden"

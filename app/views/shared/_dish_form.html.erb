@@ -1,5 +1,19 @@
 <table class="attr">
     <tr>
+      <th><%= form.label :new_dish_picture %></th>
+      <td>
+        <div><%= form.file_field :new_dish_picture %></div>
+        <% if @dish.dish_picture.attached? %>
+          <div>
+            <%= image_tag @dish.dish_picture.variant(resize: "50x50") %>
+            <%= form.check_box :remove_dish_picture %>
+            <%= form.label :remove_dish_picture %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+    
+    <tr>
       <th><%= form.label :dish_name, "おかず名" %></th>
       <td><%= form.text_field :dish_name, size: 8 %></td>
     </tr>

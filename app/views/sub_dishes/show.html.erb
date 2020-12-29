@@ -1,24 +1,6 @@
 <% @page_title = "サイドメニュー詳細" %>
 <h1><%= @page_title %></h1>
 
-<table class="attr">
-  <tr>
-    <th>おかず名</th>
-    <td><%= @sub_dish.sub_dish_name %></td>
-  </tr>
-  <tr>
-    <th>説明文</th>
-    <td><%= @sub_dish.introduction %></td>
-  </tr>
-  <tr>
-    <th>カロリー</th>
-    <td><%= @sub_dish.sub_kcal %></td>
-  </tr>
-  <tr>
-    <th>価格</th>
-    <td><%= @sub_dish.sub_dish_price %>円</td>
-  </tr>
-</table>
-
+<%= render "body" %>
 
 <tr><%= link_to "サイドメニュー一覧に戻る", sub_dishes_path %></tr>

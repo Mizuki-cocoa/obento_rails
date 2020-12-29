@@ -5,20 +5,25 @@
   <table class="list">
     <thead>
       <tr>
-        <th>サイドメニュー名</th>
+        <th>画像</th>
         <th>おすすめ</th>
+        <th>サイドメニュー名</th>
         <th>カロリー</th>
       </tr>
     </thead>
     <tbody>
       <% @sub_dishes.each do |sub| %>
-        <tr>
-          <td style="text-align: right"><%= link_to sub.sub_dish_name, sub %></td>
+          <td>
+            <% if sub.subdish_picture.attached? %>
+              <%= image_tag sub.subdish_picture.variant(resize: "50x50") %>
+            <% end %>
+          </td>
           <% if sub.recommend == true then %>
             <td><%= image_tag("good.png", size: "20x20", alt: "good") %></td>
           <% else %>
             <td><%= image_tag("mu.png", size: "20x20", alt: "nogood") %></td>
           <% end %>
+          <td style="text-align: right"><%= link_to sub.sub_dish_name, sub %></td>
           <td><%= sub.sub_kcal %></td>
           <td>
             <%= link_to "編集", [:edit, sub] %>
