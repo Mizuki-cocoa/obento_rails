@@ -1,4 +1,5 @@
 class DishesController < ApplicationController
+    before_action :login_required
     def index
         @dishes = Dish.all
     end

@@ -1,4 +1,5 @@
 class SubDishesController < ApplicationController
+    before_action :login_required
     def index
         @sub_dishes = SubDish.all
     end

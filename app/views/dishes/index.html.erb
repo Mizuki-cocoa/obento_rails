@@ -12,6 +12,7 @@
     </thead>
     <tbody>
       <% @dishes.each do |dish| %>
+      <div class="dish">
         <tr>
           <td style="text-align: right"><%= link_to dish.dish_name, dish %></td>
           <% if dish.recommend == true then %>
@@ -31,4 +32,5 @@
   </table>
 <% else %>
   <p>おかず情報がありません</p>
+      </div>
 <% end %>
