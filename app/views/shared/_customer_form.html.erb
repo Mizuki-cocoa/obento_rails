@@ -1,18 +1,24 @@
 <table class="attr">
   <tr>
-      <th><%= form.label :user_name, "UserID" %></th>
-      <td><%= form.text_field :user_name, size: 8 %></td>
-    </tr>
+    <th><%= form.label :user_name, "UserID" %></th>
+    <td><%= form.text_field :user_name, size: 8 %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :full_name, "氏名" %></th>
+    <td><%= form.text_field :full_name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :address, "住所" %></th>
+    <td><%= form.text_field :address %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :tel_num, "電話番号" %></th>
+    <td><%= form.text_field :tel_num %></td>
+  </tr>
+  <% if @customer.new_record? %>
     <tr>
-      <th><%= form.label :full_name, "氏名" %></th>
-      <td><%= form.text_field :full_name %></td>
+      <th><%= form.label :password, "パスワード" %></th>
+      <td><%= form.text_field :password %></td>
     </tr>
-    <tr>
-      <th><%= form.label :address, "住所" %></th>
-      <td><%= form.text_field :address %></td>
-    </tr>
-    <tr>
-      <th><%= form.label :tel_num, "電話番号" %></th>
-      <td><%= form.text_field :tel_num %></td>
-    </tr>
+  <% end %>
 </table>
