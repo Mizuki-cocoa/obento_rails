@@ -1,21 +1,4 @@
 <% @page_title = "会員の詳細" %>
 <h1><%= @page_title %></h1>
 
-<table class="attr">
-  <tr>
-    <th>ユーザー名</th>
-    <td><%= @customer.user_name %></td>
-  </tr>
-  <tr>
-    <th>氏名</th>
-    <td><%= @customer.full_name %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @customer.address %></td>
-  </tr>
-  <tr>
-    <th>電話</th>
-    <td><%= @customer.tel_num %></td>
-  </tr>
-</table>
+<%= render "body" %>
