@@ -1,5 +1,7 @@
 <% @page_title = "おかず一覧" %>
 <h1><%= @page_title %></h1>
+<% @limit= params[:box].to_i %>
+<% @souzai = [] %>
 
 <% if @dishes.present? %>
   <table class="list">
@@ -13,6 +15,7 @@
     </thead>
     <tbody>
       <% @dishes.each do |dish| %>
+        <% @souzai.push(dish.dish_name.to_s) %>
       <div class="dish">
         <tr>
           <td>
@@ -38,6 +41,18 @@
       <% end %>
     </tbody>
   </table>
+
+  <% if @limit!=0 %>
+    <%= form_tag(sub_dishes_path, method: "get") do %>
+      <% for i in 1..@limit %>
+        選択<%= "#{i}" %>: <%= select_tag :dish, options_for_select(@souzai), multiple: true %>
+      <% end %>
+      <%= submit_tag "送信"%>
+    <% end %>
+  <% else %>
+    <%= link_to "サイドメニューへ", :sub_dishes %>
+    <h1>お弁当を食べたい人は箱を先に選んでネ!</h1>
+  <% end %>
 <% else %>
   <p>おかず情報がありません</p>
       </div>

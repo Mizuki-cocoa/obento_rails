@@ -1,5 +1,6 @@
 <% @page_title = "弁当箱一覧" %>
 <h1><%= @page_title %></h1>
+<% @box_ids = [0] %>
 
 <% if @boxes.present? %>
   <table class="list">
@@ -11,14 +12,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @sum=0 %>
       <% @boxes.each do |box| %>
+        <% @box_ids.push(box.id.to_s) %>
         <tr>
-          <% @sum+=1 %>
-          <% if @sum == 6 then %>
-            <td><%= image_tag("rect#{@sum}.png", size: "140x100", alt: "rect") %></td>
+          <% if box.id == 6 then %>
+            <td><%= image_tag("rect#{box.id}.png", size: "140x100", alt: "rect") %></td>
           <% else %>
-            <td><%= image_tag("rect#{@sum}.png", size: "100x100", alt: "rect") %></td>
+            <td><%= image_tag("rect#{box.id}.png", size: "100x100", alt: "rect") %></td>
           <% end %>
           <td style="text-align: right"><%= box.box_name %></td>
           <td><%= box.box_price %>円</td>
@@ -26,6 +26,11 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= form_tag(dishes_path, method: "get") do %>
+    箱選択: <%= select_tag :box, options_for_select(@box_ids) %>
+    <%= submit_tag "送信"%>
+  <% end %>
 <% else %>
   <p>箱情報がありません</p>
 <% end %>

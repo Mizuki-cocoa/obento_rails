@@ -17,7 +17,7 @@ class SubDish < ApplicationRecord
             errors.add(:new_subdish_picture, :invalid_image_type)
         end
         else
-        errors.add(:new_subdish_picture, :invalid)
+            errors.add(:new_subdish_picture, :invalid)
         end
     end
 end

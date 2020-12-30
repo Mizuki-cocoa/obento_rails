@@ -17,7 +17,7 @@ class Dish < ApplicationRecord
             errors.add(:new_dish_picture, :invalid_image_type)
         end
         else
-        errors.add(:new_dish_picture, :invalid)
+            errors.add(:new_dish_picture, :invalid)
         end
     end
 end
