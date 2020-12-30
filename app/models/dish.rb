@@ -20,4 +20,22 @@ class Dish < ApplicationRecord
             errors.add(:new_dish_picture, :invalid)
         end
     end
+
+    validates :dish_name, presence: true, length: { maximum: 20}
+    validates :introduction, presence: true, length: { minimum: 2,  maximum: 20}
+    validates :dish_kcal, presence: true,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      less_than: 1000,
+      allow_blank: true
+    }
+
+    validates :stock, presence: true,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      less_than: 100,
+      allow_blank: true
+    }
 end

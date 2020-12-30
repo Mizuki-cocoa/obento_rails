@@ -1,6 +1,8 @@
+<%= render "shared/errors", obj: @customer %>
+
 <table class="attr">
   <tr>
-    <th><%= form.label :user_name, "UserID" %></th>
+    <th><%= form.label :user_name, "UserName" %></th>
     <td><%= form.text_field :user_name, size: 8 %></td>
   </tr>
   <tr>

@@ -1,3 +1,5 @@
+<%= render "shared/errors", obj: @dish %>
+
 <table class="attr">
     <tr>
       <th><%= form.label :new_dish_picture %></th>
@@ -12,7 +14,7 @@
         <% end %>
       </td>
     </tr>
-    
+
     <tr>
       <th><%= form.label :dish_name, "おかず名" %></th>
       <td><%= form.text_field :dish_name, size: 8 %></td>

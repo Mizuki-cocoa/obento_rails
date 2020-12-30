@@ -20,4 +20,29 @@ class SubDish < ApplicationRecord
             errors.add(:new_subdish_picture, :invalid)
         end
     end
+
+    validates :sub_dish_name, presence: true, length: { maximum: 20}
+    validates :sub_dish_price, presence: true,
+    numericality: {
+      only_integer: true,
+      greater_than: 1,
+      less_than: 1000,
+      allow_blank: true
+    }
+    validates :introduction, presence: true, length: { minimum: 2,  maximum: 20}
+    validates :sub_kcal, presence: true,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      less_than: 1000,
+      allow_blank: true
+    }
+
+    validates :stock, presence: true,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      less_than: 100,
+      allow_blank: true
+    }
 end
