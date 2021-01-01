@@ -2,6 +2,7 @@
 <h1><%= @page_title %></h1>
 <% @limit= params[:box].to_i %>
 <% @souzai = [] %>
+<% @sum1 = 0 %>
 
 <% if @dishes.present? %>
   <table class="list">
@@ -15,6 +16,7 @@
     </thead>
     <tbody>
       <% @dishes.each do |dish| %>
+        <% @sum1+=1 %>
         <% @souzai.push(dish.dish_name.to_s) %>
       <div class="dish">
         <tr>
@@ -41,17 +43,23 @@
       <% end %>
     </tbody>
   </table>
+  <% @array = Array.new(@sum1).map{Array.new(2)} %>
+  <% for i in 0..(@sum1-1) %>
+    <% @array[i][0]=@souzai[i] =%>
+    <% @array[i][1]=i+1 =%>
+  <% end %>
 
   <% if @limit!=0 %>
-    <%= form_tag(sub_dishes_path, method: "get") do %>
+    <%= form_tag(bentos_path, method: "get") do %>
+      <%= hidden_field_tag :sum, params[:box] %>
       <% for i in 1..@limit %>
-        選択<%= "#{i}" %>: <%= select_tag :dish, options_for_select(@souzai), multiple: true %>
+        選択<%= "#{i}" %>: <%= select_tag :dish, options_for_select(@array), multiple: true %>
       <% end %>
       <%= submit_tag "送信"%>
     <% end %>
   <% else %>
     <%= link_to "サイドメニューへ", :sub_dishes %>
-    <h1>お弁当を食べたい人は箱を先に選んでネ!</h1>
+    <h2>お弁当を食べたい人は箱を先に選んでネ!</h2>
   <% end %>
 <% else %>
   <p>おかず情報がありません</p>

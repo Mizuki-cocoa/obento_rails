@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
     def create
         customer=Customer.find_by(user_name: params[:user_name])
         if customer&.authenticate(params[:password])
-            cookies.signed[:customer_id]={value: customer.id, expires: 5.minutes.from_now}
+            cookies.signed[:customer_id]={value: customer.id}
         else
             flash.alert="名前とパスワードが一致しません"
         end

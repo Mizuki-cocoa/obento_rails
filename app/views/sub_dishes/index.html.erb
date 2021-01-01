@@ -1,6 +1,5 @@
 <% @page_title = "サイドメニュー一覧" %>
 <h1><%= @page_title %></h1>
-<%= params[:dish] %>
 <%= link_to "箱選択に戻る", :boxes %>
 
 <% if @sub_dishes.present? %>
@@ -39,14 +38,15 @@
     </tbody>
   </table>
 
-  <%= form_tag(sub_dishes_path, method: "get") do %>
+  <%= form_tag(carts_path, method: "get") do %>
     <% @sub_dishes.each do |sub| %>
+      <%= check_box_tag 'page[flag]', true, false, {} %>
       <%= sub.sub_dish_name%>
-      数量<%= select_tag :sub_dish, options_for_select([[0],[1],[2],[3],[4],[5],[6]])%>
+      数量<%= select_tag :cart, options_for_select([["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]]), 
+      multiple: true, disabled: true%>
     <% end %>
-    <%= submit_tag "送信"%>
+    <%= submit_tag "カートに入れる"%>
   <% end %>
-
 <% else %>
   <p>サイド情報がありません</p>
 <% end %>
