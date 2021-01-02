@@ -11,13 +11,4 @@ class CustomersController < ApplicationController
     def new
         @customer = Customer.new()
     end
-    
-    def create
-        @customer = Customer.new(params[:customer])
-        if @customer.save
-            redirect_to @customer, notice: "会員を登録しました。"
-        else
-            render "/customers/new"
-        end
-    end
 end

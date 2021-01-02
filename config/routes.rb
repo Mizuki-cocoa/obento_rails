@@ -2,16 +2,16 @@ Rails.application.routes.draw do
   root "top#index"
   resources :dishes, only: [:index, :show]
   resources :sub_dishes, only: [:index, :show]
-  resources :bentos
-  resources :carts
+  resources :bentos, only: [:index]
+  resources :carts, only: [:index]
   resources :customers, only: [:index, :show, :new] do
     resources :orders, only: [:index]
   end
-  resources :boxes
+  resources :boxes, only: [:index]
   resources :orders
 
   namespace :admin do
-    resources :customers
+    resources :customers, only: [:index, :show]
     resources :dishes
     resources :sub_dishes
     root "top#index"
