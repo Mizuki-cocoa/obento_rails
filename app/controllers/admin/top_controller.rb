@@ -1,5 +1,4 @@
 class Admin::TopController < Admin::Base
-    before_action :basic_auth, if: :production? 
     def index
 
     end

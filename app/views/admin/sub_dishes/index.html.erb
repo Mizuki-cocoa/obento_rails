@@ -2,6 +2,7 @@
 <h1><%= @page_title %></h1>
 
 <% if @sub_dishes.present? %>
+  <%= link_to "サイドメニューを新しく追加", new_admin_sub_dish_path %>
   <table class="list">
     <thead>
       <tr>

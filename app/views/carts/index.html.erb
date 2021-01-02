@@ -1,12 +1,34 @@
 <% @page_title = "カート一覧" %>
 <h1><%= @page_title %></h1>
 
-<%= params[:cart] %>
-<%= @kosuu=params[:sum1] %>個入弁当
-<% @array1 = params[:dish1].split(" ",params[:sum1].to_i) %>
-
-<% for i in 0..(@kosuu.to_i-1) %>
-  <%= Dish.find(@array1[i]).dish_name %>
-  <%= Dish.find(@array1[i]).dish_kcal %>kcal
+<% if params[:cart].present? %>
+  <% for i in 1..(params[:cart].length) %>
+  <% @kosuu = params[:cart][i-1].to_i %>
+    <% if @kosuu != 0 %>
+      <%= SubDish.find(i).sub_dish_name %>
+      <%= SubDish.find(i).sub_kcal %>kcal
+      <% @allkcal += SubDish.find(i).sub_kcal.to_i * @kosuu %>
+      <% @allsum += SubDish.find(i).sub_dish_price.to_i * @kosuu %>
+      <%= @kosuu %>個
+      <p></p>
+    <% end %>
+  <% end %>
+  合計<%= @allsum %>円
+  合計<%= @allkcal %>kcal
 <% end %>
-<%= Box.find(@kosuu).box_price %>円
+
+<% if params[:dish1].present? %>
+  <%= @kosuu=params[:sum1] %>個入弁当
+  <% @array1 = params[:dish1].split(" ",params[:sum1].to_i) %>
+  <p></p>
+
+  <% for i in 0..(@kosuu.to_i-1) %>
+    <%= Dish.find(@array1[i]).dish_name %>
+    <%= Dish.find(@array1[i]).dish_kcal %>kcal
+    <% @allkcal += Dish.find(@array1[i]).dish_kcal.to_i %>
+    <p></p>
+  <% end %>
+  合計<%= @allsum += Box.find(@kosuu).box_price %>円
+  合計<%= @allkcal %>kcal
+<% end %>
+<p></p>

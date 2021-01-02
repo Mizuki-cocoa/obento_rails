@@ -35,10 +35,9 @@
 
   <%= form_tag(carts_path, method: "get") do %>
     <% @sub_dishes.each do |sub| %>
-      <%= check_box_tag 'page[flag]', true, false, {} %>
       <%= sub.sub_dish_name%>
-      数量<%= select_tag :cart, options_for_select([["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]]), 
-      multiple: true, disabled: true%>
+      数量<%= select_tag :cart, 
+      options_for_select([["0個",0],["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]],0), multiple: true %>
     <% end %>
     <%= submit_tag "カートに入れる"%>
   <% end %>
