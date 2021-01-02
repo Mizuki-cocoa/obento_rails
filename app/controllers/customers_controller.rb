@@ -17,7 +17,7 @@ class CustomersController < ApplicationController
         if @customer.save
             redirect_to @customer, notice: "会員を登録しました。"
         else
-            render "new"
+            render "/customers/new"
         end
     end
 end

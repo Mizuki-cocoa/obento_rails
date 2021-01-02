@@ -1,9 +1,9 @@
 <% @page_title="おかず情報の編集" %>
 <h1><%= @page_title %></h1>
 
-<%= form_for @dish do |form| %>
+<%= form_for [:admin, @dish] do |form| %>
     <%= render "shared/dish_form", form: form %>
     <div><%= form.submit %></div>
 <% end %>
 
-<td><%= link_to "おかず一覧に戻る", dishes_path %></td>
+<td><%= link_to "おかず一覧に戻る", admin_dishes_path %></td>

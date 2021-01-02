@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     private def login_required
         raise LoginRequired unless current_customer
     end
-    
+
     private def rescue_bad_request(exception)
         render "errors/bad_request", status: 400, layout: "error",
         formats: [:html]

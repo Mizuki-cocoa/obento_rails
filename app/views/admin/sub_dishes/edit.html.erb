@@ -1,9 +1,9 @@
 <% @page_title="サイドメニュー情報の編集" %>
 <h1><%= @page_title %></h1>
 
-<%= form_for @sub_dish do |form| %>
+<%= form_for [:admin, @sub_dish] do |form| %>
     <%= render "shared/sub_dish_form", form: form %>
     <div><%= form.submit %></div>
 <% end %>
 
-<td><%= link_to "サイドメニュー一覧に戻る", sub_dishes_path %></td>
+<td><%= link_to "サイドメニュー一覧に戻る", admin_sub_dishes_path %></td>

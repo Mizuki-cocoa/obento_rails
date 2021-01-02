@@ -1,4 +1,8 @@
-class TopController < ApplicationController
+class Admin::TopController < Admin::Base
+    before_action :basic_auth, if: :production? 
+    def index
+
+    end
     def bad_request
         raise ActionController::ParameterMissing, ""
     end
