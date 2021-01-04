@@ -3,6 +3,7 @@
 
 <% if @dishes.present? %>
   <%= link_to "おかずを新しく追加", new_admin_dish_path %>
+  <%= link_to "おかず在庫管理", stocks_admin_dishes_path %>
   <table class="list">
     <thead>
       <tr>

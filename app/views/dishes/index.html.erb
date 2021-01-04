@@ -46,7 +46,7 @@
 
   <% if @limit!=0 %>
     <%= form_tag(bentos_path, method: "get") do %>
-      <%= hidden_field_tag :sum, params[:box] %>
+      <%= hidden_field_tag :box, params[:box] %>
       <% for i in 1..@limit %>
         選択<%= "#{i}" %>: <%= select_tag :dish, options_for_select(@array), multiple: true %>
       <% end %>

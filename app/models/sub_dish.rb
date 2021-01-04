@@ -3,6 +3,9 @@ class SubDish < ApplicationRecord
     attribute :new_subdish_picture
     attribute :remove_subdish_picture, :boolean
 
+    has_many :associations
+    has_many :association_carts, through: :associations, source: :cart
+
     before_save do
         if new_subdish_picture
             self.subdish_picture.attach(new_subdish_picture)

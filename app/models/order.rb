@@ -1,3 +1,3 @@
 class Order < ApplicationRecord
-    belongs_to :orderman, class_name: "Customer", foreign_key: "customer_id"
+    belongs_to :order, class_name: "Customer", foreign_key: "customer_id"
 end

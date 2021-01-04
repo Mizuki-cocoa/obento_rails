@@ -1,17 +1,24 @@
 <% @page_title = "お弁当" %>
 <h1><%= @page_title %></h1>
-<%= params[:sum] %>個入弁当
+
 <% @sum2=params[:dish].length %>
 <% @array=[] %>
 
+<%= Box.find(params[:box]).box_name %>
+<%= Box.find(params[:box]).box_price %>円
+<% @bb=@bento.sum_kcal %>
+
 <% for i in 0..(@sum2-1) %>
+  <% @bb += Dish.find(params[:dish][i].to_i).dish_kcal.to_i %>
   <% @array.push(Dish.find(params[:dish][i].to_i).dish_name) %>
 <% end %>
 <%= @array %>
+<%= @bb %>
 
 <%= form_tag(carts_path, method: "get") do %>
-  <%= hidden_field_tag :sum1, params[:sum] %>
-  <%= hidden_field_tag :dish1, params[:dish] %>
+  <%= hidden_field_tag :box, params[:box] %>
+  <%= hidden_field_tag :dish, params[:dish] %>
+  <%= select_tag :sum, options_for_select([["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]]) %>
   <%= submit_tag "カートに入れる"%>
 <% end %>
 

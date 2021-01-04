@@ -39,4 +39,8 @@ class Admin::DishesController < Admin::Base
         @dish.destroy
         redirect_to [:admin, @dish], notice: "おかずを削除しました。"
     end
+
+    def stocks
+        @dishes = Dish.all
+    end
 end

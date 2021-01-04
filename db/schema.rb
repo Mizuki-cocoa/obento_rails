@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_123956) do
+ActiveRecord::Schema.define(version: 2021_01_02_163610) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,11 +33,33 @@ ActiveRecord::Schema.define(version: 2020_12_29_123956) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "assignments", force: :cascade do |t|
+    t.integer "bento_id", null: false
+    t.integer "dish_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bento_id"], name: "index_assignments_on_bento_id"
+    t.index ["dish_id"], name: "index_assignments_on_dish_id"
+  end
+
+  create_table "associations", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "sub_dish_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_associations_on_cart_id"
+    t.index ["sub_dish_id"], name: "index_associations_on_sub_dish_id"
+  end
+
   create_table "bentos", force: :cascade do |t|
+    t.integer "box_id"
+    t.integer "cart_id"
     t.integer "sum_kcal"
     t.integer "num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["box_id"], name: "index_bentos_on_box_id"
+    t.index ["cart_id"], name: "index_bentos_on_cart_id"
   end
 
   create_table "boxes", force: :cascade do |t|
@@ -77,11 +99,13 @@ ActiveRecord::Schema.define(version: 2020_12_29_123956) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
     t.date "reserve_date"
     t.date "deliver_date"
     t.string "deliver_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "sub_dishes", force: :cascade do |t|
@@ -91,12 +115,6 @@ ActiveRecord::Schema.define(version: 2020_12_29_123956) do
     t.string "introduction"
     t.integer "sub_kcal"
     t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "subnums", force: :cascade do |t|
-    t.integer "sum_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

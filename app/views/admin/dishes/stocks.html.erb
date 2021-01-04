@@ -1,0 +1,31 @@
+<% @page_title = "おかず在庫管理" %>
+<h1><%= @page_title %></h1>
+<% @souzai = [] %>
+
+<% if @dishes.present? %>
+<table class="list">
+    <thead>
+        <tr>
+            <th>おかず名</th>
+            <th>在庫数</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @dishes.each do |dish| %>
+        <% @souzai.push(dish.dish_name.to_s) %>
+        <tr>
+            <td><%= dish.dish_name %></td>
+            <td><%= dish.stock %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<% else %>
+    <p>おかず情報がありません</p>
+<% end %>
+
+<%= form_tag(stocks_admin_dishes_path, method: "get") do %>
+    <%= select_tag :dish, options_for_select(@souzai) %>
+    <%= select_tag :stocksum, options_for_select([["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]]) %>
+<%= submit_tag "送信"%>
+<% end %>

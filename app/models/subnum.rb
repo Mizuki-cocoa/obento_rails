@@ -1,2 +1,0 @@
-class Subnum < ApplicationRecord
-end
