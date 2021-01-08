@@ -3,7 +3,7 @@ class Dish < ApplicationRecord
     attribute :new_dish_picture
     attribute :remove_dish_picture, :boolean
     has_many :assignments
-    has_many :assignment_bentos, through: :assignments, source: :bento
+    has_many :bentos, through: :assignments
 
     before_save do
         if new_dish_picture

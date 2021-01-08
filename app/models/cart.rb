@@ -3,5 +3,5 @@ class Cart < ApplicationRecord
     has_many :bentos
 
     has_many :associations
-    has_many :association_sub_dishes, through: :associations, source: :sub_dish
+    has_many :sub_dishes, through: :associations
 end

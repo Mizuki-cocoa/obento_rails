@@ -10,6 +10,7 @@
         <th>おすすめ</th>
         <th>サイドメニュー名</th>
         <th>カロリー</th>
+        <th>料金</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +28,8 @@
             <td><%= image_tag("mu.png", size: "20x20", alt: "nogood") %></td>
           <% end %>
           <td style="text-align: right"><%= link_to sub.sub_dish_name, sub %></td>
-          <td><%= sub.sub_kcal %></td>
+          <td><%= sub.sub_kcal %>kcal</td>
+          <td><%= sub.sub_dish_price %>円</td>
         </tr>
       <% end %>
     </tbody>

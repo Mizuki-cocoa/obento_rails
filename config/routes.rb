@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "top#index"
   resources :dishes, only: [:index, :show]
   resources :sub_dishes, only: [:index, :show]
-  resources :bentos, only: [:index]
+  resources :bentos, only: [:index, :create]
   resources :carts, only: [:index]
   resources :customers, only: [:index, :show, :new] do
     resources :orders, only: [:index]

@@ -2,9 +2,37 @@ class BentosController < ApplicationController
     def index
         if params[:dish]&.size != params[:box].to_i && params[:box].to_i!=0
             redirect_to dishes_path(box: (params[:box]).to_i), notice: "おかずを選択し直してください!"
-        elsif params[:dish]&.size == nil
-            @bento = Bento.find(params[:box])
         end
         @bento = Bento.find(params[:box])
+    
+    end
+
+    def create
+        @bento_id=Bento.last.id+1
+        @bento=Bento.new
+        @bento.id=@bento_id
+        @bento.cart_id=current_customer.cart.id
+        @bento.box_id=params[:box]
+        @bento.num=params[:sum]
+        @dishsum=params[:dish].split(" ")
+        @bb=0
+        @dishsum.each do |d|
+            @bb+=Dish.find(d).dish_kcal
+        end
+        @bento.sum_kcal=@bb
+
+        if @bento.save
+            @dishsum.each do |d|
+                @assignment=Assignment.new
+                @assignment.dish_id=d
+                @assignment.bento_id=@bento_id
+                unless @assignment.save
+                    redirect_to boxes_path
+                end
+            end
+            redirect_to carts_path
+        else
+            redirect_to boxes_path
+        end
     end
 end
