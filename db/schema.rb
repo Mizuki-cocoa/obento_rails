@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_163610) do
   create_table "associations", force: :cascade do |t|
     t.integer "cart_id", null: false
     t.integer "sub_dish_id", null: false
+    t.integer "num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_associations_on_cart_id"
@@ -100,8 +101,8 @@ ActiveRecord::Schema.define(version: 2021_01_02_163610) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
-    t.date "reserve_date"
-    t.date "deliver_date"
+    t.datetime "reserve_date"
+    t.datetime "deliver_date"
     t.string "deliver_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

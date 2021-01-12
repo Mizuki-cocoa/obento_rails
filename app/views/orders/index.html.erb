@@ -1,11 +1,7 @@
-<%= @id=current_customer.id %>
-<%= current_customer.address %>
-<%= params[:date]%>
+<% @page_title = "配達情報入力" %>
+<h1><%= @page_title %></h1>
 
-<%= Order.find(@id).reserve_date %>
-<%= Order.find(@id).deliver_date %>
-
-<%= form_tag(orders_path, method: "get") do %>
+<%= form_tag(new_order_path, method: "get") do %>
   <p>配達先住所</p>
   <%= select_tag :address, options_for_select([["現住所",1],["店舗",2]]) %>
   <p>希望日/希望時間</p>

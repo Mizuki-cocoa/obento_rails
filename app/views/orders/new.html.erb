@@ -1,2 +1,43 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<% @page_title = "注文確認" %>
+<h1><%= @page_title %></h1>
+<p>
+    予約日:
+    <%= Time.zone.now.hour %>時
+    <%= Time.zone.now.min %>分
+</p>
+<p>
+    希望日時:
+    <% @niti=params[:date].values[0].to_datetime %>
+    <%= @niti.year %>年
+    <%= @niti.month %>月
+    <%= @niti.day %>日
+    <%= @niti.hour %>時
+    <%= @niti.min %>分
+</p>
+
+<p>
+<% Customer.find(current_customer.id).cart.bentos.each do |c| %>
+  <%= Box.find(c.box_id).box_name %>
+  <%= Box.find(c.box_id).box_price %>円
+  <%= c.num %>個
+  <%= c.sum_kcal %>kcal
+  <% c.dish_ids.each do |d| %>
+    <%= Dish.find(d).dish_name %>
+  <% end %>
+  <p></p>
+<% end %>
+</p>
+<p>
+<% Association.ids.each do |a| %>
+    <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_name %>
+    <%= @num=Association.find(a).num %>個
+    <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_price*@num %>円
+    <%= SubDish.find(Association.find(a).sub_dish_id).sub_kcal*@num %>kcal
+<% end %>
+
+</p>
+<%= form_tag(orders_path, method: "post") do %>
+    <%= hidden_field_tag :date, params[:date] %>
+    <%= hidden_field_tag :address, params[:address] %>
+    <%= submit_tag "注文確定" %>
+  <% end %>

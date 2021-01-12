@@ -1,41 +1,27 @@
 class CartsController < ApplicationController
     def index
-        @bento = Bento.new
-        @bento.box_id = params[:box]
         @allkcal = current_customer.cart.all_kcal
         @allsum = current_customer.cart.sum_price
-        @cart = current_customer.cart
-        
-        Customer.find(current_customer.id).cart.bentos.each do |c|
+        @allkcal1=0
+        @allsum1=0
+        @id=current_customer.id
+        @cart = Cart.find(@id)
+
+        Customer.find(@id).cart.bentos.each do |c|
             @allkcal+=c.sum_kcal*c.num
             @allsum+=Box.find(c.box_id).box_price.to_i*c.num
         end
 
-        if params[:cart].present?
-            for i in 1..(params[:cart].length)
-                @kosuu = params[:cart][i-1].to_i
-                if @kosuu != 0
-                    @allkcal += SubDish.find(i).sub_kcal.to_i * @kosuu 
-                    @allsum += SubDish.find(i).sub_dish_price.to_i * @kosuu 
-                end
-            end
+        Association.ids.each do |a|
+            @num=Association.find(a).num
+            @allkcal+=SubDish.find(Association.find(a).sub_dish_id).sub_kcal*@num
+            @allsum+=SubDish.find(Association.find(a).sub_dish_id).sub_dish_price*@num
         end
 
-        if params[:dish].present?
-            @dishsum=params[:dish].split(" ")
-            for i in 0..(params[:box].to_i-1)
-                @allkcal += Dish.find(@dishsum[i]).dish_kcal * params[:sum].to_i
-            end
-            @allsum += Box.find(params[:box]).box_price * params[:sum].to_i
-        end
+        @allkcal1+=@allkcal
+        @allsum1+=@allsum
 
-        @cart.all_kcal+=@allkcal
-        @cart.sum_price+=@allsum
-
-        # if @cart.save && @bento.save
-        #     redirect_to carts_path
-        # else
-        #     render "/carts/index"
-        # end
+        @cart.all_kcal=@allkcal1
+        @cart.sum_price=@allsum1
     end
 end

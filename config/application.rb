@@ -27,6 +27,7 @@ module Obento
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.time_zone= "Tokyo"
+    config.active_record.default_timezone = :local
     config.action_controller.permit_all_parameters = true
 
     config.exceptions_app = ->(env) do

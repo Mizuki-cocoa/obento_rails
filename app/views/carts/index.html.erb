@@ -7,34 +7,23 @@
   <%= c.num %>個
   <%= c.sum_kcal %>kcal
   <% c.dish_ids.each do |d| %>
-    <%= Dish.find(d).dish_name%>
+    <%= Dish.find(d).dish_name %>
   <% end %>
   <p></p>
 <% end %>
 
-<% if params[:cart].present? %>
-  <% for i in 1..(params[:cart].length) %>
-    <% if params[:cart][i-1].to_i != 0 %>
-      <%= SubDish.find(i).sub_dish_name %>
-      <%= SubDish.find(i).sub_kcal %>kcal
-      <%= SubDish.find(i).sub_dish_price %>円
-      <%= params[:cart][i-1] %>個
-      <p></p>
-    <% end %>
-  <% end %>
+<% Association.ids.each do |a| %>
+  <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_name %>
+  <%= @num=Association.find(a).num %>個
+  <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_price*@num %>円
+  <%= SubDish.find(Association.find(a).sub_dish_id).sub_kcal*@num %>kcal
+  <p></p>
 <% end %>
 
-<% if params[:dish].present? %>
-  <%= params[:sum] %>個数
-  <% for i in 0..(params[:box].to_i-1) %>
-    <%= Dish.find(@dishsum[i]).dish_name %>
-    <%= Dish.find(@dishsum[i]).dish_kcal %>kcal
-  <% end %>
-<% end %>
 <p></p>
 合計<%= @cart.all_kcal%>kcal
 合計<%= @cart.sum_price %>円
 
 <%= form_tag(orders_path, method: "get") do %>
-<%= submit_tag "送信"%>
+  <%= submit_tag "注文へ"%>
 <% end %>

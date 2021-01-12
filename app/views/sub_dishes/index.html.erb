@@ -35,7 +35,7 @@
     </tbody>
   </table>
 
-  <%= form_tag(carts_path, method: "get") do %>
+  <%= form_tag(sub_dishes_path, method: "post") do %>
     <% @sub_dishes.each do |sub| %>
       <%= sub.sub_dish_name%>
       数量<%= select_tag :cart, 
