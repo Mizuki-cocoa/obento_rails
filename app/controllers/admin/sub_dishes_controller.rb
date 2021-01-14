@@ -1,4 +1,5 @@
 class Admin::SubDishesController < Admin::Base
+    before_action :basic_auth
     def index
         @sub_dishes = SubDish.all
     end
@@ -38,5 +39,15 @@ class Admin::SubDishesController < Admin::Base
         @sub_dish=SubDish.find(params[:id])
         @sub_dish.destroy
         redirect_to [:admin, @sub_dish], notice: "サイドメニューを削除しました。"
+    end
+
+    def stocks
+        @sub_dishes = SubDish.all
+        if params[:sub_dish].present? && params[:stocksum].present?
+            @subdish_up=SubDish.find(params[:sub_dish])
+            @current_stock=@subdish_up.stock
+            @subdish_up.update(stock: @current_stock+params[:stocksum].to_i)
+            redirect_to stocks_admin_sub_dishes_path, notice: "サイドメニュー量を更新しました"
+        end
     end
 end

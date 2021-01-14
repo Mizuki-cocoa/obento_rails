@@ -4,11 +4,11 @@
 <%= Box.find(params[:box]).box_name %>
 <%= Box.find(params[:box]).box_price %>円
 
-<%= @array %>
-
 <%= form_tag(bentos_path, method: "post") do %>
   <%= hidden_field_tag :box, params[:box] %>
-  <%= hidden_field_tag :dish, params[:dish] %>
+  <% for i in 1..params[:box].to_i %>
+    <%= hidden_field_tag 'dish[]', params[:dish][i-1].to_i %>
+  <% end %>
   <%= select_tag :sum, options_for_select([["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]]) %>
   <%= submit_tag "カートに入れる"%>
 <% end %>

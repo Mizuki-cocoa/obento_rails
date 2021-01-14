@@ -14,15 +14,14 @@ class BentosController < ApplicationController
         @bento.cart_id=current_customer.cart.id
         @bento.box_id=params[:box]
         @bento.num=params[:sum]
-        @dishsum=params[:dish].split(" ")
         @bb=0
-        @dishsum.each do |d|
+        params[:dish].each do |d|
             @bb+=Dish.find(d).dish_kcal
         end
         @bento.sum_kcal=@bb
 
         if @bento.save
-            @dishsum.each do |d|
+            params[:dish].each do |d|
                 @assignment=Assignment.new
                 @assignment.dish_id=d
                 @assignment.bento_id=@bento_id

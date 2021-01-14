@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     resources :dishes do
       get "stocks",on: :collection
     end
-    resources :sub_dishes
+    resources :sub_dishes do
+      get "stocks",on: :collection
+    end
     root "top#index"
   end
 

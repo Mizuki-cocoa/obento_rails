@@ -1,4 +1,5 @@
 class Admin::TopController < Admin::Base
+    before_action :basic_auth
     def index
 
     end

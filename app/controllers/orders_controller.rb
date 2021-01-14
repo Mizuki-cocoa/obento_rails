@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     @order.customer_id=current_customer.id
     @order.reserve_date=Time.zone.now
     @order.deliver_date=@date.first.first
+
     if @address.to_i==1
       @order.deliver_address=Customer.find(current_customer.id).address
     end
@@ -32,10 +33,13 @@ class OrdersController < ApplicationController
     if @order.save
       Customer.find(current_customer.id).cart.bentos.each do |c|
         @num=c.num.to_i
+        #puts @num
         c.dish_ids.each do |d|
           for i in 1..@num do
             @sto=Dish.find(d).stock.to_i
+            #puts i
             @mem=@sto-1
+            #puts @mem
             #注文ミスのときに在庫をもとに戻す
             if @mem > 0
               Dish.find(d).update(stock: @mem)

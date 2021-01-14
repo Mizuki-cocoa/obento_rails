@@ -1,4 +1,5 @@
 class Admin::DishesController < Admin::Base
+    before_action :basic_auth
     def index
         @dishes = Dish.all
     end
@@ -42,5 +43,11 @@ class Admin::DishesController < Admin::Base
 
     def stocks
         @dishes = Dish.all
+        if params[:dish].present? && params[:stocksum].present?
+            @dishup=Dish.find(params[:dish])
+            @current_stock=@dishup.stock
+            @dishup.update(stock: @current_stock+params[:stocksum].to_i)
+            redirect_to stocks_admin_dishes_path, notice: "おかず量を更新しました"
+        end
     end
 end

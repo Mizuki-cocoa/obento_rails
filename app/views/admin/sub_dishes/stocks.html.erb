@@ -1,0 +1,39 @@
+<% @page_title = "サイドメニュー在庫管理" %>
+<h1><%= @page_title %></h1>
+<% @side = [] %>
+<% @sum2 = 0 %>
+
+<% if @sub_dishes.present? %>
+<table class="list">
+    <thead>
+        <tr>
+            <th>サイドメニュー名</th>
+            <th>在庫数</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @sub_dishes.each do |sub| %>
+        <% @sum2+=1 %>
+        <% @side.push(sub.sub_dish_name.to_s) %>
+        <tr>
+            <td><%= sub.sub_dish_name %></td>
+            <td><%= sub.stock %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<% else %>
+    <p>サイドメニュー情報がありません</p>
+<% end %>
+
+<% @array = Array.new(@sum2).map{Array.new(2)} %>
+<% for i in 0..(@sum2-1) %>
+  <% @array[i][0]=@side[i] =%>
+  <% @array[i][1]=i+1 =%>
+<% end %>
+
+<%= form_tag(stocks_admin_sub_dishes_path, method: "get") do %>
+    <%= select_tag :sub_dish, options_for_select(@array) %>
+    <%= select_tag :stocksum, options_for_select([["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]]) %>
+<%= submit_tag "送信"%>
+<% end %>
