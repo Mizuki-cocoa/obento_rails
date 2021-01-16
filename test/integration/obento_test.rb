@@ -12,7 +12,7 @@ class ObentoTest < ActionDispatch::IntegrationTest
     post "/bentos", params: {box: "3", dish: ["1","1","1"], sum:"4"}
     post "/orders", params: {address:1, date:{"2021-01-11"=>"2021-01-13T00:49"}}
     assert_response :redirect
-    get "/"
+    follow_redirect!
     assert_select "p.notice", "注文ミス!"
   end
 end

@@ -12,6 +12,7 @@
         <th>おすすめ</th>
         <th>おかず名</th>
         <th>カロリー</th>
+        <th>在庫数</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
           <% end %>
           <td style="text-align: right"><%= link_to dish.dish_name, dish %></td>
           <td><%= dish.dish_kcal %></td>
+          <td><%= dish.stock %></td>
         </tr>
       <% end %>
     </tbody>

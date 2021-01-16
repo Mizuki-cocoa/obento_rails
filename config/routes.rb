@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root "top#index"
   resources :dishes, only: [:index, :show]
   resources :sub_dishes, only: [:index, :show, :create]
-  resources :bentos, only: [:index, :create]
-  resources :carts, only: [:index]
+  resources :bentos
+  resources :carts
+  resources :associations
   resources :customers, only: [:index, :show, :new]
   resources :orders, only: [:index, :show, :new, :create] do
     get "confirm"

@@ -1,7 +1,13 @@
 <% @page_title = "マイアカウント"%>
 
 <h1><%= @page_title %></h1>
-
+<% Customer.find(current_customer.id).orders.each do |o| %>
+    <%= o.id %>
+    <%= o.reserve_date %>
+    <%= o.deliver_date %>
+    <%= o.deliver_address %>
+    <p></p>
+<% end %>
 <ul class="toolbar">
     <%= menu_link_to "アカウント情報の編集", :edit_account %>
     <%= menu_link_to "パスワードの変更", :edit_password %>

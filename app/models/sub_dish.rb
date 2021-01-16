@@ -44,7 +44,7 @@ class SubDish < ApplicationRecord
     validates :stock, presence: true,
     numericality: {
       only_integer: true,
-      greater_than: 0,
+      greater_than: -1,
       less_than: 100,
       allow_blank: true
     }

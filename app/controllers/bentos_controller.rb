@@ -34,4 +34,11 @@ class BentosController < ApplicationController
             redirect_to boxes_path
         end
     end
+
+    def destroy
+        puts params[:id]
+        @bento = Bento.find(params[:id])
+        @bento.destroy
+        redirect_to :carts, notice: "お弁当を削除しました。"
+    end
 end

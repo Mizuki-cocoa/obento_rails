@@ -1,29 +1,70 @@
 <% @page_title = "カート一覧" %>
-<h1><%= @page_title %></h1>
+<header class="post-info">
+  <h2 class="post-title"><%= @page_title %></h2>
 
-<% Customer.find(current_customer.id).cart.bentos.each do |c| %>
-  <%= Box.find(c.box_id).box_name %>
-  <%= Box.find(c.box_id).box_price %>円
-  <%= c.num %>個
-  <%= c.sum_kcal %>kcal
-  <% c.dish_ids.each do |d| %>
-    <%= Dish.find(d).dish_name %>
-  <% end %>
-  <p></p>
-<% end %>
-
-<% Association.ids.each do |a| %>
-  <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_name %>
-  <%= @num=Association.find(a).num %>個
-  <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_price*@num %>円
-  <%= SubDish.find(Association.find(a).sub_dish_id).sub_kcal*@num %>kcal
-  <p></p>
-<% end %>
-
-<p></p>
-合計<%= @cart.all_kcal%>kcal
-合計<%= @cart.sum_price %>円
-
-<%= form_tag(orders_path, method: "get") do %>
-  <%= submit_tag "注文へ"%>
-<% end %>
+  <p class="post-cat">お弁当</p>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>お弁当箱</th>
+        <th>価格</th>
+        <th>数量</th>
+        <th>カロリー</th>
+        <th>おかず</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>    
+      <% Customer.find(current_customer.id).cart.bentos.each do |c| %>
+      <tr>
+        <td><%= Box.find(c.box_id).box_name %></td>
+        <td><%= Box.find(c.box_id).box_price %>円</td>
+        <td><%= c.num %>個
+          <td><%= c.sum_kcal %>kcal</td>
+          <td>
+            <% c.dish_ids.each do |d| %>
+              <%= Dish.find(d).dish_name %>
+            <% end %>
+          </td>
+          <td>
+              <%= link_to "削除", c, method: :delete,
+                data: { confirm: "本当に削除しますか?" } %>
+          </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <p class="post-cat">サイドメニュー</p>
+      <table class="list">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>価格</th>
+            <th>数量</th>
+            <th>カロリー</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Customer.find(current_customer.id).cart.associations.each do |a| %>
+          <tr>
+            <% @num = Association.find(a.id).num %>
+            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_name %></td>
+            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_price*@num %>円</td>
+            <td><%= Association.find(a.id).num %>個</td>
+            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_kcal*@num %>kcal</td>
+            <td>
+                <%= link_to "削除", a, method: :delete,
+                  data: { confirm: "本当に削除しますか?" } %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <hr>
+      合計<%= @cart.sum_price %>円
+      合計<%= @cart.all_kcal%>kcal
+      <%= form_tag(orders_path, method: "get") do %>
+      <%= submit_tag "注文へ"%>
+      <% end %>
+    </header>

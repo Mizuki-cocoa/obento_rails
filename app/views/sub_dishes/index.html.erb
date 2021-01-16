@@ -11,6 +11,7 @@
         <th>サイドメニュー名</th>
         <th>カロリー</th>
         <th>料金</th>
+        <th>在庫数</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
           <td style="text-align: right"><%= link_to sub.sub_dish_name, sub %></td>
           <td><%= sub.sub_kcal %>kcal</td>
           <td><%= sub.sub_dish_price %>円</td>
+          <td><%= sub.stock%></td>
         </tr>
       <% end %>
     </tbody>

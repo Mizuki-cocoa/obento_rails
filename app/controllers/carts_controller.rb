@@ -12,7 +12,7 @@ class CartsController < ApplicationController
             @allsum+=Box.find(c.box_id).box_price.to_i*c.num
         end
 
-        Association.ids.each do |a|
+        Cart.find(@id).associations.ids.each do |a|
             @num=Association.find(a).num
             @allkcal+=SubDish.find(Association.find(a).sub_dish_id).sub_kcal*@num
             @allsum+=SubDish.find(Association.find(a).sub_dish_id).sub_dish_price*@num
