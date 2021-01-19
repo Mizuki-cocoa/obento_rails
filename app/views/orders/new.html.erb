@@ -2,6 +2,9 @@
 <h1><%= @page_title %></h1>
 <p>
     予約日:
+    <%= Time.zone.now.year %>年
+    <%= Time.zone.now.month %>月
+    <%= Time.zone.now.day %>日
     <%= Time.zone.now.hour %>時
     <%= Time.zone.now.min %>分
 </p>

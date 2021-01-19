@@ -16,6 +16,8 @@
           <td style="text-align: right"><%= customer.id %></td>
           <td><%= link_to customer.user_name, [:admin, customer] %></td>
           <td><%= customer.full_name %></td>
+          <td><%= link_to "削除", [:admin, customer], method: :delete,
+            data: { confirm: "本当に削除しますか?" } %></td>
         </tr>
       <% end %>
     </tbody>

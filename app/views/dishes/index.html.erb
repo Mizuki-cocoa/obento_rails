@@ -2,7 +2,23 @@
 <h1><%= @page_title %></h1>
 <% @limit= params[:box].to_i %>
 <% @souzai = [] %>
+<% @array1 = [0] %>
+<% @sum2 = 30 %>
 <% @sum1 = 0 %>
+
+<% for i in 0..24 %>
+  <% @array1.push(@sum2) %>
+  <% @sum2+=10 %>
+<% end %>
+
+<% if params[:box].blank? %>
+<p>kcal検索</p>
+  <%= form_tag :search_dishes, method: :get, class: "search" do %>
+    <p>下限 <%= select_tag :downkcal, options_for_select(@array1) %>~上限<%= select_tag :upkcal, options_for_select(@array1) %></p>
+    <%= text_field_tag "q", params[:q] %>
+    <%= submit_tag "検索" %>
+  <% end %>
+<% end %>
 
 <% if @dishes.present? %>
   <table class="list">
@@ -43,8 +59,8 @@
   
   <% @array = Array.new(@sum1).map{Array.new(2)} %>
   <% for i in 0..(@sum1-1) %>
-    <% @array[i][0]=@souzai[i] =%>
-    <% @array[i][1]=i+1 =%>
+    <% @array[i][0]=@souzai[i] %>
+    <% @array[i][1]=i+1 %>
   <% end %>
 
   <% if @limit!=0 %>

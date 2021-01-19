@@ -6,7 +6,6 @@ class CartsController < ApplicationController
         @allsum1=0
         @id=current_customer.id
         @cart = Cart.find(@id)
-
         Customer.find(@id).cart.bentos.each do |c|
             @allkcal+=c.sum_kcal*c.num
             @allsum+=Box.find(c.box_id).box_price.to_i*c.num

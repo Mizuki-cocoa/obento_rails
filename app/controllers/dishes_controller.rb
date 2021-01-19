@@ -7,4 +7,9 @@ class DishesController < ApplicationController
     def show
         @dish = Dish.find(params[:id])
     end
+
+    def search
+        @dishes = Dish.search(params[:q],params[:downkcal],params[:upkcal])
+        render "index"
+    end
 end

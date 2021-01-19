@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "top#index"
-  resources :dishes, only: [:index, :show]
+  resources :dishes, only: [:index, :show] do
+    get "search", on: :collection
+  end
   resources :sub_dishes, only: [:index, :show, :create]
   resources :bentos
   resources :carts
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   resources :orders
 
   namespace :admin do
-    resources :customers, only: [:index, :show]
+    resources :customers
     resources :dishes do
       get "stocks",on: :collection
     end

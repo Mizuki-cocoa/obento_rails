@@ -14,14 +14,16 @@ class BentosController < ApplicationController
         @bento.cart_id=current_customer.cart.id
         @bento.box_id=params[:box]
         @bento.num=params[:sum]
+        @disharray=params[:dish]
         @bb=0
-        params[:dish].each do |d|
+        @disharray.each do |d|
+            puts d
             @bb+=Dish.find(d).dish_kcal
         end
         @bento.sum_kcal=@bb
 
         if @bento.save
-            params[:dish].each do |d|
+            @disharray.each do |d|
                 @assignment=Assignment.new
                 @assignment.dish_id=d
                 @assignment.bento_id=@bento_id
@@ -33,6 +35,7 @@ class BentosController < ApplicationController
         else
             redirect_to boxes_path
         end
+        p @bento
     end
 
     def destroy

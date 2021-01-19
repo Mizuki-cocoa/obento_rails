@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_163610) do
+ActiveRecord::Schema.define(version: 2021_01_18_145625) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_163610) do
   end
 
   create_table "associations", force: :cascade do |t|
-    t.integer "cart_id", null: false
+    t.integer "cart_id"
     t.integer "sub_dish_id", null: false
     t.integer "num"
     t.datetime "created_at", null: false
@@ -97,6 +97,31 @@ ActiveRecord::Schema.define(version: 2021_01_02_163610) do
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "model1s", force: :cascade do |t|
+    t.string "orders_type", default: "Photo"
+    t.integer "orders_id"
+    t.integer "bento_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["orders_type", "orders_id"], name: "index_model1s_on_orders_type_and_orders_id"
+  end
+
+  create_table "order_bentos", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "bento_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_bentos_on_order_id"
+  end
+
+  create_table "order_subdishes", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "sub_dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_subdishes_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|

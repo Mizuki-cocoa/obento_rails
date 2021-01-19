@@ -1,9 +1,5 @@
 class OrdersController < ApplicationController
   before_action :login_required
-  def index
-    @order=Order.find(current_customer.id)
-  end
-
   def new
     if params[:date].present?
       if params[:date].values==[""]
@@ -28,7 +24,7 @@ class OrdersController < ApplicationController
     @order=Order.new
     @order.customer_id=current_customer.id
     @order.reserve_date=Time.zone.now
-    @order.deliver_date=@date.to_datetime
+    @order.deliver_date=@date
 
     if params[:address].to_i == 1
       @order.deliver_address = @customer.address
@@ -44,8 +40,6 @@ class OrdersController < ApplicationController
         end
       end
       for i in 0..@delive_array.length-1
-        puts @delive_array[i]
-        puts @stock_array[i]
         if @delive_array[i] > @stock_array[i]
           Order.find(@order.id).destroy
           redirect_to :carts, notice: "注文ミス!" and return
@@ -61,18 +55,14 @@ class OrdersController < ApplicationController
       @customer.cart.associations.each do |a|
         @sub_dish = a.sub_dish
         @id=@sub_dish.id
-        puts "!!!!!!!!"
-        puts a.num.to_i
-        puts "!!!!!!!!"
         @sub_delive_array[@id-1]+=a.num.to_i
         @sub_stock_array[@id-1]=SubDish.find(@id).stock.to_i
-        puts @sub_delive_array
-        puts @sub_stock_array
-        for i in 0..@sub_delive_array.length-1
-          if @sub_delive_array[i] > @sub_stock_array[i]
-            Order.find(@order.id).destroy
-            redirect_to :carts, notice: "注文ミス!" and return
-          end
+      end
+
+      for i in 0..@sub_delive_array.length-1
+        if @sub_delive_array[i] > @sub_stock_array[i]
+          Order.find(@order.id).destroy
+          redirect_to :carts, notice: "注文ミス!" and return
         end
       end
       
@@ -81,6 +71,22 @@ class OrdersController < ApplicationController
           SubDish.find(i+1).update(stock: @sub_stock_array[i]-@sub_delive_array[i])
         end
       end
+
+      Customer.find(current_customer.id).cart.bentos.each do |b|
+        @order_bento=OrderBento.new(order_id: @order.id)
+        @order_bento.bento_id=b.id
+        @order_bento.save
+        Bento.find(b.id).update(cart_id: -1)
+      end
+
+      @customer.cart.associations.each do |a|
+        @order_sub=OrderSubdish.new(order_id: @order.id)
+        @order_sub.sub_dish_id=a.id
+        @order_sub.save
+        puts a.id
+        Association.find(a.id).update(cart_id: -1)
+      end
+
       redirect_to :account, notice:  "注文完了!" and return
     end
   end

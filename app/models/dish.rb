@@ -27,17 +27,33 @@ class Dish < ApplicationRecord
     validates :introduction, presence: true, length: { minimum: 2,  maximum: 20}
     validates :dish_kcal, presence: true,
     numericality: {
-      only_integer: true,
-      greater_than: 0,
-      less_than: 1000,
-      allow_blank: true
+        only_integer: true,
+        greater_than: 0,
+        less_than: 1000,
+        allow_blank: true
     }
 
     validates :stock, presence: true,
     numericality: {
-      only_integer: true,
-      greater_than: -1,
-      less_than: 100,
-      allow_blank: true
+        only_integer: true,
+        greater_than: -1,
+        less_than: 100,
+        allow_blank: true
     }
+
+    class << self
+        def search(query,down,up)
+            rel = order("dish_kcal")
+        if up.present? && down.present? && up.to_i-down.to_i>0
+            rel=rel.where(dish_kcal: down.to_i..up.to_i).order("dish_kcal")
+            puts up.to_i-down.to_i
+        end
+
+        if query.present?
+            rel = rel.where("dish_name LIKE ?",
+            "%#{query}%")
+        end
+            rel
+        end
+    end
 end

@@ -62,9 +62,12 @@
         </tbody>
       </table>
       <hr>
-      合計<%= @cart.sum_price %>円
-      合計<%= @cart.all_kcal%>kcal
-      <%= form_tag(orders_path, method: "get") do %>
-      <%= submit_tag "注文へ"%>
+      <% if !(Customer.find(current_customer.id).cart.associations.present?) && !(Customer.find(current_customer.id).cart.bentos.present?) %>
+      <% else %>
+        <%= form_tag(orders_path, method: "get") do %>
+        <%= submit_tag "注文へ"%>
+        <% end %>
+        合計<%= @cart.sum_price %>円
+        合計<%= @cart.all_kcal%>kcal
       <% end %>
     </header>
