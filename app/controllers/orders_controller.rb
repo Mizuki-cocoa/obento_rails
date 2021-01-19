@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :login_required
+
   def new
     if params[:date].present?
       if params[:date].values==[""]
@@ -25,6 +26,8 @@ class OrdersController < ApplicationController
     @order.customer_id=current_customer.id
     @order.reserve_date=Time.zone.now
     @order.deliver_date=@date
+    @order.all_kcal=Cart.find(current_customer.id).all_kcal
+    @order.sum_price=Cart.find(current_customer.id).sum_price
 
     if params[:address].to_i == 1
       @order.deliver_address = @customer.address

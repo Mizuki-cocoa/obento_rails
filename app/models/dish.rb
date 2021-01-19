@@ -43,15 +43,15 @@ class Dish < ApplicationRecord
 
     class << self
         def search(query,down,up)
-            rel = order("dish_kcal")
         if up.present? && down.present? && up.to_i-down.to_i>0
+            rel = order("dish_kcal")
             rel=rel.where(dish_kcal: down.to_i..up.to_i).order("dish_kcal")
             puts up.to_i-down.to_i
+        else
+            @message="正しく数値を入力してください"
         end
-
         if query.present?
-            rel = rel.where("dish_name LIKE ?",
-            "%#{query}%")
+            rel = rel.where("dish_name LIKE ?", "%#{query}%")
         end
             rel
         end

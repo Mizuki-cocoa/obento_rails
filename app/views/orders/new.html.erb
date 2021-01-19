@@ -40,6 +40,9 @@
   <p></p>
 <% end %>
 
+合計金額<%= Cart.find(current_customer.id).sum_price %>円
+合計カロリー<%= Cart.find(current_customer.id).all_kcal %>kcal
+
 </p>
 <%= form_tag(orders_path, method: "post") do %>
     <%= hidden_field_tag :date, params[:date].values %>

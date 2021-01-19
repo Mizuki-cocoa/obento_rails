@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_01_18_145625) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
+    t.integer "all_kcal"
+    t.integer "sum_price"
     t.datetime "reserve_date"
     t.datetime "deliver_date"
     t.string "deliver_address"

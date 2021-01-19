@@ -10,6 +10,7 @@ class DishesController < ApplicationController
 
     def search
         @dishes = Dish.search(params[:q],params[:downkcal],params[:upkcal])
+        flash.alert=@message
         render "index"
     end
 end

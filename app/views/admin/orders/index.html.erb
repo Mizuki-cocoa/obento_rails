@@ -1,0 +1,53 @@
+<% @array=Customer.all.ids %>
+
+<% Order.all.each do |o| %>
+  <% if @array.include?(o.customer_id)%>
+    <p><%= Customer.find(o.customer_id).user_name %></p>
+  <% else %>
+    <p>削除済みの会員</p>
+  <% end %>
+  
+  <p>
+      予約日:
+      <%= o.reserve_date.year %>年
+      <%= o.reserve_date.month %>月
+      <%= o.reserve_date.day %>日
+      <%= o.reserve_date.hour %>時
+      <%= o.reserve_date.min %>分
+  </p>
+  <p>
+      希望日時:
+      <%= o.deliver_date.year %>年
+      <%= o.deliver_date.month %>月
+      <%= o.deliver_date.day %>日
+      <%= o.deliver_date.hour %>時
+      <%= o.deliver_date.min %>分
+  </p>
+  <p>
+      届け先:
+      <%= o.deliver_address %>
+  </p>
+
+  <p>
+      合計カロリー:<%= o.all_kcal %>kcal
+      合計金額:<%= o.sum_price %>円
+  </p>
+  <p>
+      <% o.order_bentos.each do |b| %>
+          <%= Bento.find(b.bento_id).box_id %>個入弁当
+          <%= Box.find(Bento.find(b.bento_id).box_id).box_price %>円
+          <%= Bento.find(b.bento_id).num %>コ
+          <% Bento.find(b.bento_id).dishes.each do |d| %>
+              <%= d.dish_name %>
+          <% end %>
+      <% end %>
+  </p>
+  <p>
+      <% o.order_subdishes.each do |s| %>
+          <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_name %>
+          <%= Association.find(s.sub_dish_id).num %>コ
+          <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_price %>円
+      <% end %>
+  </p>
+      <p>-----------------------------------------------------------------------------------</p>
+<% end %>

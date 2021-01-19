@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   end
   resources :sub_dishes, only: [:index, :show, :create]
   resources :bentos
-  resources :carts
+  resources :carts do
+    get "des"
+  end
   resources :associations
   resources :customers, only: [:index, :show, :new]
   resources :orders, only: [:index, :show, :new, :create] do
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers
+    resources :orders, only: [:index]
     resources :dishes do
       get "stocks",on: :collection
     end
@@ -32,6 +35,8 @@ Rails.application.routes.draw do
   get "internal_server_error" => "top#internal_server_error"
 
   resource :session, only: [:create, :destroy]
-  resource :account, only: [:show, :edit, :update, :create]
+  resource :account, except: [:new] do
+    get "order"
+  end
   resource :password, only: [:show, :edit, :update]
 end

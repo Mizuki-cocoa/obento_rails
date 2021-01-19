@@ -1,41 +1,12 @@
 <% @page_title = "マイアカウント"%>
 
 <h1><%= @page_title %></h1>
-<% current_customer.orders.each do |o| %>
-    予約日:
-    <%= o.reserve_date.year %>年
-    <%= o.reserve_date.month %>月
-    <%= o.reserve_date.day %>日
-    <%= o.reserve_date.hour %>時
-    <%= o.reserve_date.min %>分
-    希望日時:
-    <%= o.deliver_date.year %>年
-    <%= o.deliver_date.month %>月
-    <%= o.deliver_date.day %>日
-    <%= o.deliver_date.hour %>時
-    <%= o.deliver_date.min %>分
-    届け先:
-    <%= o.deliver_address %>
-    <p></p>
-
-    <% o.order_bentos.each do |b| %>
-        <%= Bento.find(b.bento_id).num %>コ
-        <%= Bento.find(b.bento_id).box_id %>個入弁当
-        <% Bento.find(b.bento_id).dishes.each do |d| %>
-            <%= d.dish_name %>
-        <% end %>
-        <p>---------------------------------------------------------</p>
-    <% end %>
-
-    <% o.order_subdishes.each do |s| %>
-        <%= Association.find(s.sub_dish_id).num %>コ
-        <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_name %>
-    <% end %>
-<% end %>
 
 <ul class="toolbar">
     <%= menu_link_to "アカウント情報の編集", :edit_account %>
     <%= menu_link_to "パスワードの変更", :edit_password %>
+    <%= menu_link_to "注文履歴", :order_account %>
 </ul>
 
 <%= render "customers/body" %>
+<%= link_to "退会", account_path ,method: :delete, data: { confirm: "本当に削除しますか?" } %>

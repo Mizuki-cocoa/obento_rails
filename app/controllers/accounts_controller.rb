@@ -15,6 +15,8 @@ class AccountsController < ApplicationController
     @customer=Customer.new(params[:customer])
     if @customer.save
       cookies.signed[:customer_id]={value: @customer.id}
+      @cart=Cart.new(id: @customer.id, customer_id: @customer.id)
+      @cart.save
       redirect_to :root, notice: "会員登録が完了しました。"
     else
       render "/customers/new"
@@ -29,5 +31,11 @@ class AccountsController < ApplicationController
     else
       render "edit"
     end
+  end
+  
+  def destroy
+    Cart.find(current_customer.id).destroy
+    current_customer.destroy
+    redirect_to :root, notice: "退会しました"
   end
 end

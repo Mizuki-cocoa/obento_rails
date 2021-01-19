@@ -50,7 +50,7 @@
           <tr>
             <% @num = Association.find(a.id).num %>
             <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_name %></td>
-            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_price*@num %>円</td>
+            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_price %>円</td>
             <td><%= Association.find(a.id).num %>個</td>
             <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_kcal*@num %>kcal</td>
             <td>
@@ -64,10 +64,12 @@
       <hr>
       <% if !(Customer.find(current_customer.id).cart.associations.present?) && !(Customer.find(current_customer.id).cart.bentos.present?) %>
       <% else %>
-        <%= form_tag(orders_path, method: "get") do %>
-        <%= submit_tag "注文へ"%>
-        <% end %>
         合計<%= @cart.sum_price %>円
         合計<%= @cart.all_kcal%>kcal
+        <%= form_tag(orders_path, method: "get") do %>
+          <%= submit_tag "注文へ"%>
+        <% end %>
+        <%= link_to "全削除", carts_path, method: :update,
+        data: { confirm: "本当に削除しますか?" } %>
       <% end %>
     </header>
