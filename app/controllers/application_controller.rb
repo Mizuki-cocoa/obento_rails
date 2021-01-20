@@ -6,15 +6,16 @@ class ApplicationController < ActionController::Base
 
     private def current_admin
         Admin.find_by(id: session[:admin_id]) if session[:admin_id]
-      end
+    end
     helper_method :current_admin
 
-    private def admin_login_required
-        raise LoginRequired unless current_admin
-      end
-
+    class AdminLoginRequired < StandardError; end
     class LoginRequired < StandardError; end
     class Forbidden < StandardError; end
+
+    private def admin_login_required
+        raise AdminLoginRequired unless current_admin
+    end
 
     if Rails.env.production? || ENV["RESCUE_EXCEPTIONS"]
         rescue_from StandardError, with: :rescue_internal_server_error
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
         rescue_from ActionController::ParameterMissing, with: :rescue_bad_request
     end
     
+    rescue_from AdminLoginRequired, with: :rescue_admin_login_required
     rescue_from LoginRequired, with: :rescue_login_required
     rescue_from Forbidden, with: :rescue_forbidden
 
@@ -33,7 +35,12 @@ class ApplicationController < ActionController::Base
         render "errors/bad_request", status: 400, layout: "error",
         formats: [:html]
     end
-    
+
+    private def rescue_admin_login_required(exception)
+        render "admin/login/index", status: 403, layout: "error",
+            formats: [:html]
+    end
+
     private def rescue_login_required(exception)
     render "errors/login_required", status: 403, layout: "error",
         formats: [:html]

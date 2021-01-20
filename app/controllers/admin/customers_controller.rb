@@ -1,5 +1,5 @@
 class Admin::CustomersController < Admin::Base
-    
+    before_action :admin_login_required
     def index
         @customers = Customer.all
     end

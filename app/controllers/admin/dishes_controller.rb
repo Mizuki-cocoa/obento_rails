@@ -1,4 +1,5 @@
 class Admin::DishesController < Admin::Base
+    before_action :admin_login_required
     def index
         @dishes = Dish.all
     end

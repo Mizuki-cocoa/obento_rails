@@ -1,20 +1,6 @@
-<div id="menu" class="big-bg">
+<div id="menu" class="big-bg"></div>
 <header class="page-header wrapper">
-  <%= image_tag "logo.png", size: "272x48", alt: "Obento" %>
-  <nav>
-      <ul class="main-nav">
-          <li><%= menu_link_to "TOP", :root %></li>
-          <% if current_admin %>
-            <ul class="account-menu">
-              <%= link_to current_admin.name + "さん", :admin_account %>
-              <%= link_to "ログアウト", :admin_session,
-                    method: :delete, data: { confirm: "ログアウトしますか？" } %>
-            </ul>
-          <% end %>
-      </ul>
-  </nav>
+<%= image_tag "logo.png", size: "272x78", alt: "Obento" %>
 </header>
-<div class="wrapper">
-   <h2 class="page-title">Admin</h2>
-</div><!-- /.wrapper -->
-</div><!-- /#home -->
+
+</div>

@@ -1,12 +1,14 @@
 class Admin::TopController < Admin::Base
+    before_action :admin_login_required
     layout "admin"
 
     private def admin_login_required
         raise LoginRequired unless current_admin
+        
     end
-
+    
     def index
-      @admins = Admin.order("id")
+        @admins = Admin.order("id")
     end
     
     def bad_request

@@ -1,3 +1,11 @@
+<% if current_admin %>
+<ul class="account-menu">
+  <%= link_to current_admin.name + "さん", :admin_account %>
+  <%= link_to "ログアウト", :admin_session,
+        method: :delete, data: { confirm: "ログアウトしますか？" } %>
+</ul>
+<% end %>
+
 <nav class="menubar" id="admin-menubar">
   <ul>
     <%= menu_link_to "管理者TOP", admin_root_path %>
