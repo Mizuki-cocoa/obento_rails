@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :orders
 
   namespace :admin do
+    resources :login
     resources :customers
     resources :orders, only: [:index]
     resources :dishes do
@@ -39,4 +40,7 @@ Rails.application.routes.draw do
     get "order"
   end
   resource :password, only: [:show, :edit, :update]
+  resource :admin_account, only: [:show, :edit, :update]
+  resource :admin_session, only: [:create, :destroy]
+  resource :admin_password, only: [:show, :edit, :update]
 end

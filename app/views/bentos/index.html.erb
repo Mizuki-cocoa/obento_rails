@@ -1,5 +1,7 @@
 <% @page_title = "お弁当" %>
-<h1><%= @page_title %></h1>
+<h1><%= @page_title %>
+  <%= image_tag("obento.png", size: "35x35", alt: "obento") %>
+</h1>
 
 <%= Box.find(params[:box]).box_name %>
 <%= Box.find(params[:box]).box_price %>円

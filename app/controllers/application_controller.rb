@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
     end
     helper_method :current_customer
 
+    private def current_admin
+        Admin.find_by(id: session[:admin_id]) if session[:admin_id]
+      end
+    helper_method :current_admin
+
+    private def admin_login_required
+        raise LoginRequired unless current_admin
+      end
+
     class LoginRequired < StandardError; end
     class Forbidden < StandardError; end
 

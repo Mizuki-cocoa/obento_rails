@@ -1,5 +1,5 @@
 class Admin::SubDishesController < Admin::Base
-    before_action :basic_auth
+
     def index
         @sub_dishes = SubDish.all
     end

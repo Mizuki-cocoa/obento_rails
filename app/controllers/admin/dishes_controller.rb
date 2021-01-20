@@ -1,5 +1,4 @@
 class Admin::DishesController < Admin::Base
-    before_action :basic_auth
     def index
         @dishes = Dish.all
     end

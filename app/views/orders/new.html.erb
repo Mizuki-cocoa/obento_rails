@@ -19,8 +19,9 @@
     <%= @niti.hour %>時
     <%= @niti.min %>分
 </p>
-
+<hr>
 <p>
+  お弁当
 <% Customer.find(current_customer.id).cart.bentos.each do |c| %>
   <%= Box.find(c.box_id).box_name %>
   <%= Box.find(c.box_id).box_price %>円
@@ -32,8 +33,11 @@
   <p></p>
 <% end %>
 </p>
-<p>
 
+<hr>
+
+<p>
+  サイドメニュー
 <% Cart.find(current_customer.id).associations.ids.each do |a| %>
   <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_name %>
   <%= Association.find(a).num %>個
@@ -41,11 +45,11 @@
   <%= SubDish.find(Association.find(a).sub_dish_id).sub_kcal %>kcal
   <p></p>
 <% end %>
-
+<hr>
 合計金額<%= Cart.find(current_customer.id).sum_price %>円
 合計カロリー<%= Cart.find(current_customer.id).all_kcal %>kcal
-
 </p>
+
 <%= form_tag(orders_path, method: "post") do %>
     <%= hidden_field_tag :date, params[:date].values %>
     <%= hidden_field_tag :address, params[:address] %>

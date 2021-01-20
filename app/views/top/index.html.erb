@@ -1,3 +1,4 @@
+<%= render "shared/login_form" unless current_customer %>
 <h2>Select × rect</h2>
 <p>
     四角い(rect)箱に選択した(select)おかずをいれるお弁当が売りの当店.
@@ -17,4 +18,3 @@
 
 <%= image_tag("wata.jpg", size: "350x240", alt: "watasu") %>
 <%= image_tag("delive.jpg", size: "350x240", alt: "delive") %>
-<%= render "shared/login_form" unless current_customer %>

@@ -1,8 +1,14 @@
 class Admin::TopController < Admin::Base
-    before_action :basic_auth
-    def index
+    layout "admin"
 
+    private def admin_login_required
+        raise LoginRequired unless current_admin
     end
+
+    def index
+      @admins = Admin.order("id")
+    end
+    
     def bad_request
         raise ActionController::ParameterMissing, ""
     end
