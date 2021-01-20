@@ -17,7 +17,6 @@ class BentosController < ApplicationController
         @disharray=params[:dish]
         @bb=0
         @disharray.each do |d|
-            puts d
             @bb+=Dish.find(d).dish_kcal
         end
         @bento.sum_kcal=@bb
@@ -35,11 +34,9 @@ class BentosController < ApplicationController
         else
             redirect_to boxes_path
         end
-        p @bento
     end
 
     def destroy
-        puts params[:id]
         @bento = Bento.find(params[:id])
         @bento.destroy
         redirect_to :carts, notice: "お弁当を削除しました。"

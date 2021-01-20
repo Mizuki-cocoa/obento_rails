@@ -1,4 +1,4 @@
-/*
+/* 
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -15,30 +15,46 @@
  */
 /* ページ全体 */
 body {
-    background-color: white;
+    background-color: rgb(253, 243, 235);
     color: black;
-    margin: 0; padding: 0;
-    font-family: Meiryo, sans-serif;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-family: 'Apple Chancery','klee',sans-serif;
+    font-size: 110%;
   }
   
   /* リンク */
-  a:link { color: #00c; }
+  /* a:link { color: #00c; }
   a:visited { color: #00c; }
   a:hover { color: #f00; }
   a img { border: none; }
-  
+   */
   /* ブロック要素 */
-  p, h1, h2, h3, table, ul {
+  /* p, h1, h2, h3, table, ul {
     margin: 0 0 1em;
   }
-  
+   */
   /* ナビゲーション */
+  nav{
+      background-color: rgb(238, 226, 216);
+      border: double 4px rgb(243, 233, 224);
+  }
   nav ul,
   ul.toolbar,
   ul.links {
+    overflow: hidden;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    color: rgb(230, 54, 54);
+  }
+
+  header ul.account-menu li {
+    display: inline;
+    margin-right: 40px;
+    
+  }
+  
+  ul.account-menu {
+    text-align: right;
   }
   
   nav ul li,
@@ -46,23 +62,32 @@ body {
   ul.toolbar li,
   ul.links li {
     display: inline;
+    width: 20%;
+    text-align: center;
+    float: left;
   }
 
+ul{
+    padding: 0px;
+}
+  table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 660px;
+  }
 
-/* 全体の枠 */
-div#container {
+/*全体の枠 div#container {
   margin: 0 auto;
   padding-top: 5px;
   width: 780px;
 }
 
-
-
 /* 右の枠（サイドバーを入れる） */
-aside#sidebar {
+/* /* aside#sidebar {
   float: left;
   width: 230px;
   background-color: #e8ffff;
   padding: 5px;
   font-size: 86%;
-}
+} */

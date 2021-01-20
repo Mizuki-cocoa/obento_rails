@@ -1,9 +1,10 @@
 <% if current_customer %>
   <nav class="menubar">
     <ul>
-      <%= menu_link_to "箱一覧", :boxes %> 
+      <%= menu_link_to "TOP", :root %> 
+      <%= menu_link_to "箱選択", :boxes %> 
       <%= menu_link_to "おかず一覧", :dishes %>
-      <%= menu_link_to "サイドメニュー一覧", :sub_dishes %> 
+      <%= menu_link_to "サイド一覧", :sub_dishes %> 
       <%= menu_link_to "カートへ", :carts %> 
     </ul>
   </nav>

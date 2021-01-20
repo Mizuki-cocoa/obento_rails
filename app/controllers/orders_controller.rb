@@ -86,7 +86,6 @@ class OrdersController < ApplicationController
         @order_sub=OrderSubdish.new(order_id: @order.id)
         @order_sub.sub_dish_id=a.id
         @order_sub.save
-        puts a.id
         Association.find(a.id).update(cart_id: -1)
       end
 

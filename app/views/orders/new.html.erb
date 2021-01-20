@@ -1,5 +1,7 @@
 <% @page_title = "注文確認" %>
-<h1><%= @page_title %></h1>
+<h1><%= @page_title %>
+    <%= image_tag("error.png", size: "35x35", alt: "error") %>
+</h1>
 <p>
     予約日:
     <%= Time.zone.now.year %>年
@@ -34,9 +36,9 @@
 
 <% Cart.find(current_customer.id).associations.ids.each do |a| %>
   <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_name %>
-  <%= @num=Association.find(a).num %>個
-  <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_price*@num %>円
-  <%= SubDish.find(Association.find(a).sub_dish_id).sub_kcal*@num %>kcal
+  <%= Association.find(a).num %>個
+  <%= SubDish.find(Association.find(a).sub_dish_id).sub_dish_price %>円
+  <%= SubDish.find(Association.find(a).sub_dish_id).sub_kcal %>kcal
   <p></p>
 <% end %>
 

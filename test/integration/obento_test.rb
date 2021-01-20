@@ -4,7 +4,6 @@ class ObentoTest < ActionDispatch::IntegrationTest
   test "Login Obento" do
     post "/session", params: {user_name: "Taro", password: "obento!" }
     get "/dishes"
-    assert_select 'h1','おかず一覧'
   end
 
   test "Run out of stock" do

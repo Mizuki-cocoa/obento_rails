@@ -3,7 +3,13 @@
 
 <%= form_tag(new_order_path, method: "get") do %>
   <p>配達先住所</p>
-  <%= select_tag :address, options_for_select([["現住所",1],["店舗",2]]) %>
+  <h3>
+    <%= select_tag :address, options_for_select([["現住所",1],["店舗",2]]) %>
+    <%= image_tag("delive.png", size: "60x60", alt: "delive") %>
+    or
+    <%= image_tag("person_delive.png", size: "60x60", alt: "pdelive") %>
+    <%= image_tag("question.png", size: "30x30", alt: "question") %>
+  </h3>
   <p>希望日/希望時間</p>
   <%= datetime_field :date, Date.today, use_month_numbers: true%>
 <%= submit_tag "送信"%>

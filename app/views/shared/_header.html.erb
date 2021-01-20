@@ -5,9 +5,6 @@
     <%= menu_link_to "ログアウト", :session, method: :delete, data: {confirm: "ログアウトしますか？"} %>
 </ul>
 <% end %>
-<ul>
-  <%= menu_link_to "TOP", :root %>
-</ul>
 
 <%=
   if controller.kind_of?(Admin::Base)
