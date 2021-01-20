@@ -17,7 +17,7 @@ end
 
 0.upto(15) do |idx|
   filename = "/var/www/obento/app/assets/images/dish/dish#{idx+1}.png"
-  path = Rails.root.join(__dir__, filename)
+  path = Rails.root.join(filename)
   m = Dish.find_by!(id: idx+1)
 
   File.open(path) do |f|
