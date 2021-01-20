@@ -1,4 +1,4 @@
-0.upto(10) do |idx|
+0.upto(9) do |idx|
   Cart.create(
     id: idx+1,
     customer_id: idx+1,
