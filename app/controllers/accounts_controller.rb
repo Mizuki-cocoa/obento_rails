@@ -21,9 +21,9 @@ class AccountsController < ApplicationController
       puts "cookie"
       @cart=Cart.create(customer_id: @customer.id)
       puts "cart_create"
-      #redirect_to :root, notice: "会員登録が完了しました。"
+      redirect_to :root, notice: "会員登録が完了しました。"
     else
-      #render "/customers/new"
+      render "/customers/new"
     end
   end
 

@@ -24,5 +24,4 @@ class Customer < ApplicationRecord
 
     attr_accessor :current_password
     validates :password, presence: {if: :current_password}
-    
 end
