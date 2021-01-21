@@ -1,6 +1,6 @@
 <% @page_title = "サイドメニュー管理" %>
 <h1><%= @page_title %></h1>
-
+<>
 <% if @sub_dishes.present? %>
   <%= link_to "サイドメニューを新しく追加", new_admin_sub_dish_path %>
   <%= link_to "サイドメニュー在庫管理", stocks_admin_sub_dishes_path %>
@@ -16,6 +16,7 @@
     <tbody>
       <% @sub_dishes.each do |sub| %>
           <td>
+            <%= image_tag("sub/sub#{sub.id.to_i}.png", size: "50x50", alt: "sub") %>
             <% if sub.subdish_picture.attached? %>
               <%= image_tag sub.subdish_picture.variant(resize: "50x50") %>
             <% else %>
