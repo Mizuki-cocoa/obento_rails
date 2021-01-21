@@ -13,7 +13,6 @@
     </thead>
     <tbody>
     <% @dishes.each do |dish| %>
-        <%= dish.id %>
         <% @sum1+=1 %>
         <% @souzai.push(dish.dish_name.to_s) %>
         <tr>
@@ -27,11 +26,13 @@
     <p>おかず情報がありません</p>
 <% end %>
 
-<% @array = Array.new(@sum1).map{Array.new(2)} %>
-<% for i in 0..(@sum1-1) %>
-  <% @array[i][0]=@souzai[i] =%>
-  <% @array[i][1]=i+1 =%>
-<% end %>
+<% 
+    @array=[]
+    Dish.all.each do |dish|
+        @array << [dish.dish_name,dish.id ]
+    end
+    p @array
+%>
 
 <%= form_tag(stocks_admin_dishes_path, method: "get") do %>
     <%= select_tag :dish, options_for_select(@array) %>

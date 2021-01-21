@@ -13,7 +13,6 @@
     </thead>
     <tbody>
     <% @sub_dishes.each do |sub| %>
-        <%= sub.id %>
         <% @sum2+=1 %>
         <% @side.push(sub.sub_dish_name.to_s) %>
         <tr>
@@ -27,11 +26,13 @@
     <p>サイドメニュー情報がありません</p>
 <% end %>
 
-<% @array = Array.new(@sum2).map{Array.new(2)} %>
-<% for i in 0..(@sum2-1) %>
-  <% @array[i][0]=@side[i] =%>
-  <% @array[i][1]=i+1 =%>
-<% end %>
+<% 
+    @array=[]
+    SubDish.all.each do |sub|
+        @array << [sub.sub_dish_name,sub.id ]
+    end
+    p @array
+%>
 
 <%= form_tag(stocks_admin_sub_dishes_path, method: "get") do %>
     <%= select_tag :sub_dish, options_for_select(@array) %>
