@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "des"
   end
   resources :associations
-  resources :customers, only: [:index, :show, :new]
+  resources :customers, only: [:index, :show, :new, :create]
   resources :orders, only: [:index, :show, :new, :create] do
     get "confirm"
   end
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get "internal_server_error" => "top#internal_server_error"
 
   resource :session, only: [:create, :destroy]
-  resource :account, except: [:new] do
+  resource :account do
     get "order"
   end
   resource :password, only: [:show, :edit, :update]
