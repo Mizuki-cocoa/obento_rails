@@ -13,6 +13,7 @@
     </thead>
     <tbody>
     <% @sub_dishes.each do |sub| %>
+        <%= sub.id %>
         <% @sum2+=1 %>
         <% @side.push(sub.sub_dish_name.to_s) %>
         <tr>
