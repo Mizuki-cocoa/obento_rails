@@ -16,7 +16,6 @@
     <tbody>
       <% @sub_dishes.each do |sub| %>
           <td>
-            <%= image_tag("sub/sub#{sub.id.to_i}.png", size: "50x50", alt: "sub") %>
             <% if sub.subdish_picture.attached? %>
               <%= image_tag sub.subdish_picture.variant(resize: "50x50") %>
             <% else %>
