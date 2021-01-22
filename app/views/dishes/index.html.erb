@@ -57,11 +57,12 @@
     </tbody>
   </table>
   
-  <% @array = Array.new(@sum1).map{Array.new(2)} %>
-  <% for i in 0..(@sum1-1) %>
-    <% @array[i][0]=@souzai[i] %>
-    <% @array[i][1]=i+1 %>
-  <% end %>
+  <% 
+  @array=[]
+  Dish.all.each do |dish|
+      @array << [dish.dish_name,dish.id]
+  end
+  %>
 
   <% if @limit!=0 %>
     <%= form_tag(bentos_path, method: "get") do %>
