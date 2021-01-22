@@ -1,23 +1,31 @@
 <% @page_title = "おかず一覧" %>
 <h1><%= @page_title %></h1>
 <% @limit= params[:box].to_i %>
-<% @souzai = [] %>
-<% @array1 = [0] %>
-<% @sum2 = 30 %>
-<% @sum1 = 0 %>
-
-<% for i in 0..24 %>
-  <% @array1.push(@sum2) %>
-  <% @sum2+=10 %>
-<% end %>
+<% 
+  @souzai = []
+  @array1 = [0]
+  @sum2 = 30
+  @sum1 = 0
+  for i in 0..24
+    @array1.push(@sum2)
+    @sum2+=10
+  end
+%>
 
 <% if params[:box].blank? %>
-<p>kcal検索</p>
-  <%= form_tag :search_dishes, method: :get, class: "search" do %>
-    <p>下限 <%= select_tag :downkcal, options_for_select(@array1) %>~上限<%= select_tag :upkcal, options_for_select(@array1) %></p>
-    <%= text_field_tag "q", params[:q] %>
-    <%= submit_tag "検索" %>
-  <% end %>
+    <%= form_tag :search_dishes, method: :get, class: "search" do %>
+      <p>kcal検索: 下限 <%= select_tag :downkcal, options_for_select(@array1) %>~上限<%= select_tag :upkcal, options_for_select(@array1) %>
+      <%= submit_tag "検索" %>
+      </p>
+    <% end %>
+
+    <%= form_tag :search_dishes, method: :get, class: "search" do %>
+    <p>
+      おかず検索:
+      <%= text_field_tag "q", params[:q] %>
+      <%= submit_tag "検索" %>
+    </p>
+    <% end %>
 <% end %>
 
 <% if @dishes.present? %>

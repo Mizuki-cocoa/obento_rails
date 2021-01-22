@@ -49,12 +49,6 @@ class OrdersController < ApplicationController
         end
       end
 
-      for i in 0..@delive_array.length-1
-        if @delive_array[i]!=0
-          Dish.find(i+1).update(stock: @stock_array[i]-@delive_array[i])
-        end
-      end
-
       @customer.cart.associations.each do |a|
         @sub_dish = a.sub_dish
         @id=@sub_dish.id
@@ -66,6 +60,12 @@ class OrdersController < ApplicationController
         if @sub_delive_array[i] > @sub_stock_array[i]
           Order.find(@order.id).destroy
           redirect_to :carts, notice: "注文ミス!" and return
+        end
+      end
+
+      for i in 0..@delive_array.length-1
+        if @delive_array[i]!=0
+          Dish.find(i+1).update(stock: @stock_array[i]-@delive_array[i])
         end
       end
       

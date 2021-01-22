@@ -9,7 +9,13 @@ class DishesController < ApplicationController
     end
 
     def search
-        @dishes = Dish.search(params[:q],params[:downkcal],params[:upkcal])
+        if params[:q].present?
+            @dishes = Dish.search1(params[:q])
+        end
+
+        if params[:downkcal].present? && params[:upkcal].present?
+            @dishes = Dish.search(params[:downkcal], params[:upkcal])
+        end
         flash.alert=@message
         render "index"
     end
