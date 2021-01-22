@@ -12,6 +12,6 @@ class Admin::CustomersController < Admin::Base
         @customer=Customer.find(params[:id])
         Cart.find(params[:id]).destroy
         @customer.destroy
-        redirect_to admin_customers_pass, notice: "会員を削除しました"
+        redirect_to admin_customers_path, notice: "会員を削除しました"
     end
 end

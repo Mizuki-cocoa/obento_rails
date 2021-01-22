@@ -1,4 +1,5 @@
 class BentosController < ApplicationController
+    before_action :login_required
     def index
         if params[:dish]&.size != params[:box].to_i && params[:box].to_i!=0
             redirect_to dishes_path(box: (params[:box]).to_i), notice: "おかずを選択し直してください!"

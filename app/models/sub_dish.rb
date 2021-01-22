@@ -28,7 +28,7 @@ class SubDish < ApplicationRecord
     validates :sub_dish_price, presence: true,
     numericality: {
       only_integer: true,
-      greater_than: 1,
+      greater_than: 0,
       less_than: 1000,
       allow_blank: true
     }

@@ -51,7 +51,7 @@
             <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_name %></td>
             <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_dish_price %>円</td>
             <td><%= Association.find(a.id).num %>個</td>
-            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_kcal*@num %>kcal</td>
+            <td><%= SubDish.find(Association.find(a.id).sub_dish_id).sub_kcal%>kcal</td>
             <td>
                 <%= link_to "削除", a, method: :delete,
                   data: { confirm: "本当に削除しますか?" } %>

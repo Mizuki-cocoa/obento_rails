@@ -38,6 +38,6 @@ class AdminController < ApplicationController
       def destroy
         @admin = Admin.find(params[:id])
         @admin.destroy
-        redirect_to :customers, notice: "会員を削除しました。"
+        redirect_to admin_customers_path, notice: "会員を削除しました。"
       end
 end

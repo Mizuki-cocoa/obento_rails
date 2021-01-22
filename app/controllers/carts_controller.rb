@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+    before_action :login_required
     def index
         @allkcal1=0
         @allsum1=0
