@@ -9,12 +9,13 @@ class SubDishesController < ApplicationController
     end
 
     def create
+        @sub_dishes=SubDish.all.order(:id)
         if params[:cart].present?
             for i in 1..(params[:cart].length)
                 @kosuu = params[:cart][i-1].to_i
                 if @kosuu != 0
                     @association=Association.new
-                    @association.sub_dish_id=i
+                    @association.sub_dish_id=@sub_dishes.ids[i-1]
                     @association.cart_id=current_customer.id
                     @association.num=@kosuu
                     unless @association.save
