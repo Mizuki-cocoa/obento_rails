@@ -1,7 +1,7 @@
 class DishesController < ApplicationController
     before_action :login_required
     def index
-        @dishes = Dish.all
+        @dishes = Dish.all.order(:id)
     end
 
     def show

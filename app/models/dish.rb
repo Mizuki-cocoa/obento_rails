@@ -24,7 +24,7 @@ class Dish < ApplicationRecord
     end
 
     validates :dish_name, presence: true, length: { maximum: 20}
-    validates :introduction, presence: true, length: { minimum: 2,  maximum: 20}
+    validates :introduction, presence: true, length: { minimum: 2,  maximum: 100}
     validates :dish_kcal, presence: true,
     numericality: {
         only_integer: true,

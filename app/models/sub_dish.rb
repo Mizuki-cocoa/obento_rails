@@ -32,7 +32,7 @@ class SubDish < ApplicationRecord
       less_than: 1000,
       allow_blank: true
     }
-    validates :introduction, presence: true, length: { minimum: 2,  maximum: 20}
+    validates :introduction, presence: true, length: { minimum: 2,  maximum: 100}
     validates :sub_kcal, presence: true,
     numericality: {
       only_integer: true,

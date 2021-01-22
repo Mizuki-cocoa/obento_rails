@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     end
 
     private def rescue_admin_login_required(exception)
-        render "admin/login/index", status: 403, layout: "error",
+        render "errors/admin_login_required", status: 403, layout: "error",
             formats: [:html]
     end
 

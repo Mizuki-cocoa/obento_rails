@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
     before_action :login_required, except: [:new]
     def index
-        @customers = Customer.all
+        @customers = Customer.all.order(:id)
     end
 
     def show

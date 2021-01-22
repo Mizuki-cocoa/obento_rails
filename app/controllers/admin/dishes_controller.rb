@@ -1,7 +1,6 @@
 class Admin::DishesController < Admin::Base
-    before_action :admin_login_required
     def index
-        @dishes = Dish.all
+        @dishes = Dish.all.order(:id)
     end
 
     def show
@@ -42,7 +41,7 @@ class Admin::DishesController < Admin::Base
     end
 
     def stocks
-        @dishes = Dish.all
+        @dishes = Dish.all.order(:id)
         if params[:dish].present? && params[:stocksum].present?
             @dishup=Dish.find(params[:dish])
             @current_stock=@dishup.stock

@@ -1,7 +1,7 @@
 class SubDishesController < ApplicationController
     before_action :login_required
     def index
-        @sub_dishes = SubDish.all
+        @sub_dishes = SubDish.all.order(:id)
     end
 
     def show
@@ -22,7 +22,7 @@ class SubDishesController < ApplicationController
                     end
                 end
             end
-            redirect_to carts_path
+            redirect_to carts_path and return
         end
     end
 
