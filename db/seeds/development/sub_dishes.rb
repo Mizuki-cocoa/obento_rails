@@ -20,13 +20,3 @@ sub_intro = [
     stock: "10"
   )
 end
-
-0.upto(4) do |idx|
-  filename="app/assets/images/sub/sub#{idx+1}.png"
-  path = Rails.root.join(filename)
-  m = SubDish.find_by!(id: idx+1)
-
-  File.open(path) do |f|
-    m.subdish_picture.attach(io: f, filename: filename)
-  end
-end

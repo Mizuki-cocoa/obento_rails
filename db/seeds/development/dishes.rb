@@ -33,13 +33,3 @@ kcals = ["84", "134", "179", "77", "77", "138", "113",
     stock: "10"
   )
 end
-
-0.upto(15) do |idx|
-  filename="app/assets/images/dish/dish#{idx+1}.png"
-  path = Rails.root.join(filename)
-  m = Dish.find_by!(id: idx+1)
-
-  File.open(path) do |f|
-    m.dish_picture.attach(io: f, filename: filename)
-  end
-end

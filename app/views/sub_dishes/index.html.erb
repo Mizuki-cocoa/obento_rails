@@ -20,7 +20,11 @@
             <% if sub.subdish_picture.attached? %>
               <%= image_tag sub.subdish_picture.variant(resize: "50x50") %>
             <% else %>
-              <%= image_tag("noimage.png", size: "50x50", alt: "noimage") %>
+              <% if File.exist? "#{Rails.root}/app/assets/images/sub/sub#{sub.id}.png" %>
+                <%= image_tag("sub#{sub.id}.png", size: "50x50", alt: "sub") %>
+              <% else %>
+                <%= image_tag("noimage.png", size: "50x50", alt: "noimage") %>
+              <% end %>
             <% end %>
           </td>
           <% if sub.recommend == true then %>
