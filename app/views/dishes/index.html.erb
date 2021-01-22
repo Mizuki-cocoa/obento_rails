@@ -42,7 +42,7 @@
               <%= image_tag dish.dish_picture.variant(resize: "50x50") %>
             <% else %>
               <% if File.exist? "#{Rails.root}/app/assets/images/dish/dish#{dish.id}.png" %>
-                <%= image_tag("dish#{dish.id}.png", size: "50x50", alt: "dish") %>
+                <%= image_tag("dish/dish#{dish.id}.png", size: "50x50", alt: "dish") %>
               <% else %>
                 <%= image_tag("noimage.png", size: "50x50", alt: "noimage") %>
               <% end %>

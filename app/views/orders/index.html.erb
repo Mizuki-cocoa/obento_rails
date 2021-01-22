@@ -11,6 +11,6 @@
     <%= image_tag("question.png", size: "30x30", alt: "question") %>
   </h3>
   <p>希望日/希望時間</p>
-  <%= datetime_field :date, Date.today, use_month_numbers: true%>
+  <%= datetime_field :date, Time.current, use_month_numbers: true%>
 <%= submit_tag "送信"%>
 <% end %>

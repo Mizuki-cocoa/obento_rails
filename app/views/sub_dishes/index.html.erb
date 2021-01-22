@@ -1,7 +1,5 @@
 <% @page_title = "サイドメニュー一覧" %>
 <h1><%= @page_title %></h1>
-<%= link_to "箱選択に戻る", :boxes %>
-
 <% if @sub_dishes.present? %>
   <table class="list">
     <thead>
@@ -21,7 +19,7 @@
               <%= image_tag sub.subdish_picture.variant(resize: "50x50") %>
             <% else %>
               <% if File.exist? "#{Rails.root}/app/assets/images/sub/sub#{sub.id}.png" %>
-                <%= image_tag("sub#{sub.id}.png", size: "50x50", alt: "sub") %>
+                <%= image_tag("sub/sub#{sub.id}.png", size: "50x50", alt: "sub") %>
               <% else %>
                 <%= image_tag("noimage.png", size: "50x50", alt: "noimage") %>
               <% end %>

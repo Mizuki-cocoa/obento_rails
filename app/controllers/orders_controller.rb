@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
       if params[:date].values==[""]
         redirect_to orders_path, notice: "希望日/希望時間を選択してください!!"
       else
-        if params[:date].keys[0].to_datetime > params[:date].values[0].to_datetime
+        if params[:date].keys[0].to_datetime.to_i > params[:date].values[0].to_datetime.to_i-32400
           redirect_to orders_path, notice: "正しく希望日/希望時間を選択してください!!"
         end
       end
