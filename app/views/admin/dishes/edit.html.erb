@@ -1,6 +1,6 @@
 <% @page_title="おかず情報の編集" %>
 <h1><%= @page_title %></h1>
-
+<% @d=true %>
 <%= form_for [:admin, @dish] do |form| %>
     <%= render "shared/dish_form", form: form %>
     <div><%= form.submit %></div>

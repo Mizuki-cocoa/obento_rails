@@ -26,7 +26,9 @@ class Admin::DishesController < Admin::Base
 
     def update
         @dish=Dish.find(params[:id])
+        @stock_buffer=@dish.stock
         @dish.assign_attributes(params[:dish])
+        @dish.stock=@stock_buffer
         if @dish.save
             redirect_to [:admin, @dish], notice: "おかず情報を更新しました。"
         else

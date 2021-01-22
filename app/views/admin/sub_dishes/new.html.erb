@@ -1,5 +1,6 @@
-<% @page_title="新規サードメニュー登録" %>
+<% @page_title="新規サイドメニュー登録" %>
 <h1><%= @page_title %></h1>
+<% @d=false %>
 
 <%= form_for [:admin, @sub_dish] do |form| %>
     <%= render "shared/sub_dish_form", form: form %>

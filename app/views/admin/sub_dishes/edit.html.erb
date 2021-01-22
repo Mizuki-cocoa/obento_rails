@@ -1,5 +1,6 @@
 <% @page_title="サイドメニュー情報の編集" %>
 <h1><%= @page_title %></h1>
+<% @d=true %>
 
 <%= form_for [:admin, @sub_dish] do |form| %>
     <%= render "shared/sub_dish_form", form: form %>

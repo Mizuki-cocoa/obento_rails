@@ -26,7 +26,9 @@ class Admin::SubDishesController < Admin::Base
 
     def update
         @sub_dish=SubDish.find(params[:id])
+        @stock_buffer=@sub_dish.stock
         @sub_dish.assign_attributes(params[:sub_dish])
+        @sub_dish.stock=@stock_buffer
         if @sub_dish.save
             redirect_to [:admin, @sub_dish], notice: "サイドメニュー情報を更新しました。"
         else
