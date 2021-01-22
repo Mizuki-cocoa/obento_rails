@@ -47,6 +47,12 @@ body {
     color: rgb(230, 54, 54);
   }
 
+  .notice{
+    background-color: rgb(253, 216, 216);
+    border: double 5px rgb(179, 38, 38);
+    text-align: center;
+  }
+
   header ul.account-menu li {
     display: inline;
     margin-right: 40px;

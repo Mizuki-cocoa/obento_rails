@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
       for i in 0..@delive_array.length-1
         if @delive_array[i] > @stock_array[i]
           Order.find(@order.id).destroy
-          redirect_to :carts, notice: "注文ミス!" and return
+          redirect_to :carts, notice: "注文ミス!おかずの内容を確認して下さい!" and return
         end
       end
 
@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
       for i in 0..@sub_delive_array.length-1
         if @sub_delive_array[i] > @sub_stock_array[i]
           Order.find(@order.id).destroy
-          redirect_to :carts, notice: "注文ミス!" and return
+          redirect_to :carts, notice: "注文ミス!サイドメニューを確認して下さい!" and return
         end
       end
 
