@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
 
   def create
     @customer=Customer.new(params[:customer])
+    @customer.id=Customer.last.id+1
     #@customer.assign_attributes(params[:customer])
     if @customer.save
       cookies.signed[:customer_id]={value: @customer.id}
