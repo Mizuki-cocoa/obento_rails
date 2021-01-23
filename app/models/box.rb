@@ -29,8 +29,8 @@ class Box < ApplicationRecord
         less_than: 30,
         allow_blank: true
     }
-    
-    validates :box_name, presence: true, length: { minimum: 2,  maximum: 20}
+
+    validates :box_name, presence: true ,uniqueness: true, length: { minimum: 2,  maximum: 20}
     validates :box_price, presence: true,
     numericality: {
       only_integer: true,
