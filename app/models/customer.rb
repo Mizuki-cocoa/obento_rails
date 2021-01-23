@@ -36,13 +36,13 @@ class Customer < ApplicationRecord
     length: { minimum: 2, maximum: 20, allow_blank: true },
     uniqueness: { case_sensitive: false }
 
-    validates :full_name, presence: true, length: { maximum: 20}
-    validates :address, presence: true, length: { minimum: 2, maximum: 50}
+    # validates :full_name, presence: true, length: { maximum: 20}
+    # validates :address, presence: true, length: { minimum: 2, maximum: 50}
 
-    validates :tel_num, presence: true,
-    format: { with: /\A[0-9\-\(\)]+\z/},
-    length: { minimum: 8, maximum: 20, allow_blank: true }
+    # validates :tel_num, presence: true,
+    # format: { with: /\A[0-9\-\(\)]+\z/},
+    # length: { minimum: 8, maximum: 20, allow_blank: true }
 
-    attr_accessor :current_password
-    validates :password, presence: {if: :current_password}
+    # attr_accessor :current_password
+    # validates :password, presence: {if: :current_password}
 end
