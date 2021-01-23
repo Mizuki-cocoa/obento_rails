@@ -3,11 +3,11 @@
   <ul class="account-menu">
     <% if current_customer.customer_picture.attached? %>
       <div class="icon">
-        <%= image_tag current_customer.customer_picture.variant(resize: "50x50") %>
+        <%= image_tag current_customer.customer_picture.variant(resize: "40x38") %>
       </div>
     <% else %>
     <div class="icon">
-      <%= image_tag("noicon.png", size: "48x48", alt: "noicon") %>
+      <%= image_tag("noicon.png", size: "40x38", alt: "noicon") %>
     </div>
     <% end %>
       <%= menu_link_to current_customer.user_name + "さん", :account %>

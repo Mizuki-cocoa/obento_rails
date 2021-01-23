@@ -22,7 +22,14 @@ class Box < ApplicationRecord
         end
     end
 
-    validates :box_num, presence: true, length: {maximum: 20}
+    validates :box_num, presence: true,
+    numericality: {
+        only_integer: true,
+        greater_than: 0,
+        less_than: 30,
+        allow_blank: true
+    }
+    
     validates :box_name, presence: true, length: { minimum: 2,  maximum: 20}
     validates :box_price, presence: true,
     numericality: {
