@@ -3,7 +3,7 @@
     <th>メニュー画像</th>
     <td>
       <% if @sub_dish.subdish_picture.attached? %>
-        <%= image_tag sub.subdish_picture.variant(resize: "50x50") %>
+        <%= image_tag @sub_dish.subdish_picture.variant(resize: "50x50") %>
       <% else %>
         <% if File.exist? "#{Rails.root}/app/assets/images/sub/sub#{@sub_dish.id}.png" %>
           <%= image_tag("sub/sub#{@sub_dish.id}.png", size: "50x50", alt: "sub") %>

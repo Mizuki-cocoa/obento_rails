@@ -1,6 +1,19 @@
 <%= render "shared/errors", obj: @box %>
 <table class="attr">
   <tr>
+    <th><%= form.label :new_box_picture %></th>
+    <td>
+      <div><%= form.file_field :new_box_picture %></div>
+      <% if @box.box_picture.attached? %>
+        <div>
+          <%= image_tag @box.box_picture.variant(resize: "50x50") %>
+          <%= form.check_box :remove_box_picture %>
+          <%= form.label :remove_box_picture %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
     <th><%= form.label :box_num, "容量" %></th>
     <td><%= form.text_field :box_num , size: 2%>個</td>
   </tr>

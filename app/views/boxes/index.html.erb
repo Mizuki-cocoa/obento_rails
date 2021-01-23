@@ -15,7 +15,17 @@
     <tbody>
       <% @boxes.each do |box| %>
         <tr>
-          <td>画像</td>
+          <td>
+            <% if box.box_picture.attached? %>
+              <%= image_tag box.box_picture.variant(resize: "100x100") %>
+            <% else %>
+              <% if File.exist? "#{Rails.root}/app/assets/images/box/rect#{box.id}.png" %>
+                <%= image_tag("box/rect#{box.id}.png", size: "100x100", alt: "box") %>
+              <% else %>
+                <%= image_tag("noimage.png", size: "100x100", alt: "noimage") %>
+              <% end %>
+            <% end %>
+          </td>
           <td style="text-align: right"><%= box.box_num %>個</td>
           <td style="text-align: right"><%= box.box_name %></td>
           <td style="text-align: right"><%= box.box_price %>円</td>

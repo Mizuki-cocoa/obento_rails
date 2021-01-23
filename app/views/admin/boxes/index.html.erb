@@ -7,6 +7,7 @@
 <table class="list">
   <thead>
     <tr>
+      <th>画像</th>
       <th>容量</th>
       <th>お弁当箱名</th>
       <th>価格</th>
@@ -16,6 +17,17 @@
   <tbody>
     <% @boxes.each do |box| %>
     <tr>
+      <td>
+        <% if box.box_picture.attached? %>
+          <%= image_tag box.box_picture.variant(resize: "100x100") %>
+        <% else %>
+          <% if File.exist? "#{Rails.root}/app/assets/images/box/rect#{box.id}.png" %>
+            <%= image_tag("box/rect#{box.id}.png", size: "100x100", alt: "box") %>
+          <% else %>
+            <%= image_tag("noimage.png", size: "100x100", alt: "noimage") %>
+          <% end %>
+        <% end %>
+      </td>
       <td><%= box.box_num %>個</td>
       <td><%= box.box_name %></td>
       <td><%= box.box_price %>円</td>

@@ -27,6 +27,7 @@ class Admin::BoxesController < Admin::Base
 
     def update
         @box = Box.find(params[:id])
+        @box.assign_attributes(params[:box])
         if @box.save
             redirect_to admin_boxes_path, notice: "弁当箱を更新しました。"
         else

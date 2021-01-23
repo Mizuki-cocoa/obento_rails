@@ -4,7 +4,7 @@
   <%= link_to "ログアウト", :admin_session,
         method: :delete, data: { confirm: "ログアウトしますか？" } %>
 </ul>
-<nav class="menubar" id="admin-menubar">
+<nav class="admin_menubar" id="admin-menubar">
   <ul>
     <%= menu_link_to "管理者TOP", admin_root_path %>
     <%= menu_link_to "全予約", :admin_orders %>
