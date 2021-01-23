@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
 
   def create
     @customer=Customer.new(params[:customer])
-    @customer.assign_attributes(params[:customer])
+    #@customer.assign_attributes(params[:customer])
     if @customer.save
       cookies.signed[:customer_id]={value: @customer.id}
       redirect_to :root, notice: "会員登録が完了しました。"
