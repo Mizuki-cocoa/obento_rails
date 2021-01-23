@@ -13,7 +13,6 @@ class AccountsController < ApplicationController
 
   def create
     @customer=Customer.new(params[:customer])
-    @customer.assign_attributes(params[:customer])
     if @customer.save
       cookies.signed[:customer_id]={value: @customer.id}
       @cart=Cart.new(id: @customer.id, customer_id: @customer.id)
