@@ -1,9 +1,9 @@
 <%= image_tag "logo.png", size: "272x78", alt: "Se・rect□"%>
 <% if current_customer %>
-<ul class="account-menu">
-    <%= menu_link_to current_customer.user_name + "さん", :account %>
-    <%= menu_link_to "ログアウト", :session, method: :delete, data: {confirm: "ログアウトしますか？"} %>
-</ul>
+  <ul class="account-menu">
+      <%= menu_link_to current_customer.user_name + "さん", :account %>
+      <%= menu_link_to "ログアウト", :session, method: :delete, data: {confirm: "ログアウトしますか？"} %>
+  </ul>
 <% end %>
 
 <%=

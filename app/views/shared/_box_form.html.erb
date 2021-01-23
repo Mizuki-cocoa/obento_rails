@@ -1,0 +1,15 @@
+<%= render "shared/errors", obj: @box %>
+<table class="attr">
+  <tr>
+    <th><%= form.label :box_num, "容量" %></th>
+    <td><%= form.text_field :box_num , size: 2%>個</td>
+  </tr>
+  <tr>
+    <th><%= form.label :box_name, "お弁当箱" %></th>
+    <td><%= form.text_field :box_name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :box_price, "価格" %></th>
+    <td><%= form.text_field :box_price, size: 5 %>円</td>
+  </tr>
+</table>

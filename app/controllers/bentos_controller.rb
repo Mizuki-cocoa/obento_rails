@@ -1,11 +1,10 @@
 class BentosController < ApplicationController
     before_action :login_required
     def index
-        if params[:dish]&.size != params[:box].to_i && params[:box].to_i!=0
+        @num=Box.find(params[:box]).box_num
+        if params[:dish]&.size != @num && params[:box]!=0
             redirect_to dishes_path(box: (params[:box]).to_i), notice: "おかずを選択し直してください!"
         end
-        @bento = Bento.find(params[:box])
-    
     end
 
     def create
@@ -17,15 +16,18 @@ class BentosController < ApplicationController
         @bento.num=params[:sum]
         @disharray=params[:dish]
         @bb=0
+        p @disharray
+
         @disharray.each do |d|
-            @bb+=Dish.find(d).dish_kcal
+            @bb+=Dish.find(d.to_i).dish_kcal
         end
+
         @bento.sum_kcal=@bb
 
         if @bento.save
             @disharray.each do |d|
                 @assignment=Assignment.new
-                @assignment.dish_id=d
+                @assignment.dish_id=d.to_i
                 @assignment.bento_id=@bento_id
                 unless @assignment.save
                     redirect_to boxes_path

@@ -30,9 +30,9 @@
     </p>
     <p>
         <% o.order_bentos.each do |b| %>
-            <%= Bento.find(b.bento_id).box_id %>個入弁当
+            <%= Box.find(Bento.find(b.bento_id).box_id).box_name %>
             <%= Box.find(Bento.find(b.bento_id).box_id).box_price %>円
-            <%= Bento.find(b.bento_id).num %>コ
+            <%= Bento.find(b.bento_id).num %>コ/
             <% Bento.find(b.bento_id).dishes.each do |d| %>
                 <%= d.dish_name %>
             <% end %>

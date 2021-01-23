@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_01_20_114703) do
   end
 
   create_table "boxes", force: :cascade do |t|
+    t.integer "box_num"
     t.string "box_name"
     t.integer "box_price"
     t.datetime "created_at", null: false

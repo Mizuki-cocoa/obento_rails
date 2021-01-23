@@ -1,37 +1,38 @@
 <% @page_title = "弁当箱一覧" %>
 <h1><%= @page_title %></h1>
-<% @box_ids = [] %>
-<p>
-  おかずをいれる箱を選んでください!!(この料金におかず分の値段が入っています)
-</p>
+<p>おかずをいれる箱を選んでください!!(この料金におかず分の値段が入っています)</p>
 
 <% if @boxes.present? %>
   <table class="list">
     <thead>
       <tr>
         <th>画像</th>
+        <th>容量</th>
         <th>名前</th>
         <th>値段</th>
       </tr>
     </thead>
     <tbody>
       <% @boxes.each do |box| %>
-        <% @box_ids.push(box.id.to_s) %>
         <tr>
-          <% if box.id == 6 then %>
-            <td><%= image_tag("rect#{box.id}.png", size: "140x100", alt: "rect") %></td>
-          <% else %>
-            <td><%= image_tag("rect#{box.id}.png", size: "100x100", alt: "rect") %></td>
-          <% end %>
+          <td>画像</td>
+          <td style="text-align: right"><%= box.box_num %>個</td>
           <td style="text-align: right"><%= box.box_name %></td>
-          <td><%= box.box_price %>円</td>
+          <td style="text-align: right"><%= box.box_price %>円</td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
+  <% 
+    @array=[]
+    Box.all.each do |box|
+        @array << [box.box_name, box.id]
+    end
+  %>
+
   <%= form_tag(dishes_path, method: "get") do %>
-    箱選択: <%= select_tag :box, options_for_select(@box_ids) %>
+    箱選択: <%= select_tag :box, options_for_select(@array) %>
     <%= submit_tag "送信"%>
   <% end %>
 <% else %>

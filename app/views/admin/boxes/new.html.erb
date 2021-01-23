@@ -1,0 +1,8 @@
+<% @page_title = "お弁当箱の新規登録" %>
+
+<h1><%= @page_title %></h1>
+
+<%= form_for [:admin, @box] do |form| %>
+  <%= render "shared/box_form", form: form %>
+  <div><%= form.submit %></div>
+<% end %>

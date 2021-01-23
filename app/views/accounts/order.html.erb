@@ -22,25 +22,29 @@
     届け先:
     <%= o.deliver_address %>
 </p>
-<p>
-    お弁当
-    <% o.order_bentos.each do |b| %>
-        <%= Bento.find(b.bento_id).box_id %>個入弁当
-        <%= Box.find(Bento.find(b.bento_id).box_id).box_price %>円
-        <%= Bento.find(b.bento_id).num %>コ
-        <% Bento.find(b.bento_id).dishes.each do |d| %>
-            <%= d.dish_name %>
+
+<% if o.order_bentos.present? %>
+    <p>
+        <% o.order_bentos.each do |b| %>
+            <%= Box.find(Bento.find(b.bento_id).box_id).box_name %>
+            <%= Box.find(Bento.find(b.bento_id).box_id).box_price %>円
+            <%= Bento.find(b.bento_id).num %>コ/
+            <% Bento.find(b.bento_id).dishes.each do |d| %>
+                <%= d.dish_name %>
+            <% end %>
         <% end %>
-    <% end %>
-</p>
-<p>
-    サイドメニュー
-    <% o.order_subdishes.each do |s| %>
-        <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_name %>
-        <%= Association.find(s.sub_dish_id).num %>コ
-        <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_price %>円
-    <% end %>
-</p>
+    </p>
+<% end %>
+
+<% if o.order_subdishes.present? %>
+    <p>
+        <% o.order_subdishes.each do |s| %>
+            <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_name %>
+            <%= Association.find(s.sub_dish_id).num %>コ
+            <%= Association.find(s.sub_dish_id).sub_dish.sub_dish_price %>円
+        <% end %>
+    </p>
+<% end %>
 
 <p>
     合計カロリー:<%= o.all_kcal %>kcal

@@ -1,6 +1,5 @@
 <% @page_title = "おかず一覧" %>
 <h1><%= @page_title %></h1>
-<% @limit= params[:box].to_i %>
 <% 
   @souzai = []
   @array1 = [0]
@@ -75,6 +74,8 @@
       @array << [dish.dish_name,dish.id]
   end
   %>
+
+  <% @limit= Box.find(params[:box].to_i).box_num %>
 
   <% if @limit!=0 %>
     <%= form_tag(bentos_path, method: "get") do %>

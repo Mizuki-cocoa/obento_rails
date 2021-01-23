@@ -1,0 +1,10 @@
+<% @page_title = "お弁当箱情報の編集" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "お弁当箱の一覧に戻る", admin_boxes_path %></div>
+
+<%= form_for [:admin, @box] do |form| %>
+  <%= render "shared/box_form", form: form %>
+  <div><%= form.submit %></div>
+<% end %>

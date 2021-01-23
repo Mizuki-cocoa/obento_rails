@@ -3,7 +3,13 @@
     <th>メニュー画像</th>
     <td>
       <% if @dish.dish_picture.attached? %>
-        <%= image_tag @dish.dish_picture.variant(resize: "50x50") %>
+        <%= image_tag dish.dish_picture.variant(resize: "50x50") %>
+      <% else %>
+        <% if File.exist? "#{Rails.root}/app/assets/images/dish/dish#{@dish.id}.png" %>
+          <%= image_tag("dish/dish#{@dish.id}.png", size: "50x50", alt: "dish") %>
+        <% else %>
+          <%= image_tag("noimage.png", size: "50x50", alt: "noimage") %>
+        <% end %>
       <% end %>
     </td>
   </tr>
@@ -17,7 +23,7 @@
   </tr>
   <tr>
     <th>カロリー</th>
-    <td><%= @dish.dish_kcal %></td>
+    <td><%= @dish.dish_kcal %>kcal</td>
   </tr>
   <td><%= link_to "おかず一覧に戻る", admin_dishes_path %></td>
 </table>
