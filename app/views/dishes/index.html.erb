@@ -75,14 +75,14 @@
   end
   %>
 
-  <% @limit= Box.find(params[:box].to_i).box_num %>
-
-  <% if @limit!=0 %>
+  <% if params[:box].present? %>
+    <% @limit= Box.find(params[:box].to_i).box_num.to_i %>
+    <% if @limit!=0 %>
     <%= form_tag(bentos_path, method: "get") do %>
       <%= hidden_field_tag :box, params[:box] %>
-      <% for i in 1..@limit %>
-        選択<%= "#{i}" %>: <%= select_tag :dish, options_for_select(@array), multiple: true %>
-      <% end %>
+        <% for i in 1..@limit %>
+          選択<%= "#{i}" %>: <%= select_tag :dish, options_for_select(@array), multiple: true %>
+        <% end %>
       <%= submit_tag "送信"%>
     <% end %>
   <% else %>
@@ -90,6 +90,8 @@
     <%= link_to "箱一覧へ", :boxes %>
     <h2>お弁当を食べたい人は箱を先に選んでネ!</h2>
   <% end %>
+  <% end %>
+
 <% else %>
   <p>おかず情報がありません</p>
       </div>

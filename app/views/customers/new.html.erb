@@ -1,4 +1,5 @@
 <% @page_title="新規会員登録" %>
+<%= link_to "TOPに戻る", :root %>
 <h1><%= @page_title %></h1>
 
 <%= form_for @customer, url: {controller: :accounts, action: :create} do |form| %>

@@ -1,6 +1,4 @@
 class Admin::TopController < Admin::Base
-    before_action :admin_login_required
-    layout "admin"
 
     def index
         @admins = Admin.order("id")

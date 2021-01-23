@@ -4,4 +4,8 @@ class Admin::LoginController < ApplicationController
   def index
     @admins = Admin.order("id")
   end
+
+  def show
+    
+  end
 end

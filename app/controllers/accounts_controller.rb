@@ -12,18 +12,13 @@ class AccountsController < ApplicationController
   end
 
   def create
-    puts "increate action"
     @customer=Customer.new(params[:customer])
-    puts "after_customer_new"
     if @customer.save
-      puts "save"
       cookies.signed[:customer_id]={value: @customer.id}
-      puts "cookie"
       @cart=Cart.create(customer_id: @customer.id)
-      puts "cart_create"
       redirect_to :root, notice: "会員登録が完了しました。"
     else
-      render "/customers/new"
+      render new_customer_path
     end
   end
 

@@ -1,5 +1,4 @@
 class Admin::BoxesController < Admin::Base
-    before_action :admin_login_required
     def index
         @boxes = Box.order("box_num")
     end

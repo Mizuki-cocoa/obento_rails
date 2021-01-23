@@ -1,5 +1,15 @@
 <table class="attr">
   <tr>
+    <th>アイコン画像</th>
+    <td>
+      <% if @customer.customer_picture.attached? %>
+        <%= image_tag @customer.customer_picture.variant(resize: "50x50") %>
+      <% else %>
+          <%= image_tag("noicon.png", size: "50x50", alt: "noicon") %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
     <th>ユーザー名</th>
     <td><%= @customer.user_name %></td>
   </tr>

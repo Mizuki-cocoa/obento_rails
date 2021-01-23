@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :orders
 
   namespace :admin do
+    resources :login
     resources :boxes
     resources :customers
     resources :orders, only: [:index]

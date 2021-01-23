@@ -22,22 +22,24 @@ body {
     font-family: 'Apple Chancery','klee',sans-serif;
     font-size: 110%;
   }
-  
-  /* リンク */
-  /* a:link { color: #00c; }
-  a:visited { color: #00c; }
-  a:hover { color: #f00; }
-  a img { border: none; }
-   */
-  /* ブロック要素 */
-  /* p, h1, h2, h3, table, ul {
-    margin: 0 0 1em;
-  }
-   */
-  /* ナビゲーション */
+
   nav.menubar{
     background-color: rgb(238, 226, 216);
     border: double 4px rgb(243, 233, 224);
+}
+nav.admin_menubar.icon{
+  background-color: rgb(238, 226, 216);
+  border: double 4px rgb(243, 233, 224);
+}
+
+.icon{
+  margin-top: -25px;
+  float: right;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid rgb(179, 38, 38);
 }
 
 nav.admin_menubar{
@@ -88,18 +90,3 @@ ul{
     table-layout: fixed;
     width: 660px;
   }
-
-/*全体の枠 div#container {
-  margin: 0 auto;
-  padding-top: 5px;
-  width: 780px;
-}
-
-/* 右の枠（サイドバーを入れる） */
-/* /* aside#sidebar {
-  float: left;
-  width: 230px;
-  background-color: #e8ffff;
-  padding: 5px;
-  font-size: 86%;
-} */

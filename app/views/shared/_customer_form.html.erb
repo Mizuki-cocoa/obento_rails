@@ -2,6 +2,19 @@
 
 <table class="attr">
   <tr>
+    <th><%= form.label :new_customer_picture %></th>
+    <td>
+      <div><%= form.file_field :new_customer_picture %></div>
+      <% if @customer.customer_picture.attached? %>
+        <div>
+          <%= image_tag @customer.customer_picture.variant(resize: "50x50") %>
+          <%= form.check_box :remove_customer_picture %>
+          <%= form.label :remove_customer_picture %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
     <th><%= form.label :user_name, "UserName" %></th>
     <td><%= form.text_field :user_name, size: 8 %></td>
   </tr>
