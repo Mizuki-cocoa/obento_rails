@@ -41,17 +41,21 @@
 
   <%
     @array=[]
+    @sum=[]
     @sub_dishes.each do |sub|
-        @array << sub.sub_dish_name
+      @array << sub.sub_dish_name
     end
   %>
 
   <%= form_tag(sub_dishes_path, method: "post") do %>
     <% @array.each do |sub| %>
-      <%= SubDish.where(sub_dish_name: sub).ids[0].to_i %>
+      <%= @id=SubDish.where(sub_dish_name: sub).ids[0].to_i %>
+      <% 0.upto(SubDish.find(@id).stock) do |id|
+          @sum << id
+        end
+      %>
       <%= sub %>
-      数量<%= select_tag :cart, 
-      options_for_select([["0個",0],["1個",1],["2個",2],["3個",3],["4個",4],["5個",5]],0), multiple: true %>
+      数量<%= select_tag :cart, options_for_select(@sum,0), multiple: true %>
     <% end %>
     <%= submit_tag "カートに入れる"%>
   <% end %>
