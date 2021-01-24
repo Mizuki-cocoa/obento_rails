@@ -10,22 +10,17 @@
   </head>
   <%= render "shared/admin_header" %>
   <body>
-    <div id="container">
       <header>
         <%= render "shared/admin_menubar" %>
       </header>
-      <div class="news-contents wrapper">
       <main>
         <% if flash.notice %>
           <p class="notice"><%= flash.notice %></p>
         <% end %>
         <%= yield %>
       </main>
-
-      </div><!-- /.news-contents -->
       <footer>
         <%= render "shared/footer" %>
       </footer>
-    </div>
   </body>
 </html>

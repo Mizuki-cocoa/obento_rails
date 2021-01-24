@@ -26,10 +26,4 @@ class SubDishesController < ApplicationController
             redirect_to carts_path and return
         end
     end
-
-    def destroy
-        @sub_dish = SubDish.find(params[:id])
-        @sub_dish.destroy
-        redirect_to :carts, notice: "サイドメニューを削除しました"
-    end
 end

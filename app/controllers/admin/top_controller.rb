@@ -1,5 +1,4 @@
 class Admin::TopController < Admin::Base
-
     def index
         @admins = Admin.order("id")
     end
