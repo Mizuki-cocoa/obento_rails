@@ -16,7 +16,6 @@ class DishesController < ApplicationController
         if params[:downkcal].present? && params[:upkcal].present?
             @dishes = Dish.search(params[:downkcal], params[:upkcal])
         end
-        flash.alert=@message
         render "index"
     end
 end

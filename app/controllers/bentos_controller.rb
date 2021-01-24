@@ -16,7 +16,6 @@ class BentosController < ApplicationController
         @bento.num=params[:sum]
         @disharray=params[:dish]
         @bb=0
-        p @disharray
 
         @disharray.each do |d|
             @bb+=Dish.find(d.to_i).dish_kcal

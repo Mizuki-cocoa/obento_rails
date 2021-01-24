@@ -23,7 +23,7 @@ class SubDishesController < ApplicationController
                     end
                 end
             end
-            redirect_to carts_path and return
+            redirect_to carts_path
         end
     end
 end
