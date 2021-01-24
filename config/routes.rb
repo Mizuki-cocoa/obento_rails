@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :dishes, only: [:index, :show] do
     get "search", on: :collection
   end
-  resources :orders, only: [:new, :create] do
+  resources :orders, only: [:index, :new, :create] do
     get "confirm"
   end
 
